@@ -2,3 +2,4 @@
 
 export(cond2sal)
 export(mdy2mmyyyy)
+export(wygen)
