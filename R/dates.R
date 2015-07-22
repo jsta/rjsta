@@ -1,6 +1,7 @@
 #'@name mdy2mmyyyy
 #'@title convert m/d/yy to mm/dd/yyyy
 #'@description Pads dates in preparation for POSIX coercion
+#'@param x character date to be formatted
 #'@export
 #'@examples
 #' x <- "5/5/15"

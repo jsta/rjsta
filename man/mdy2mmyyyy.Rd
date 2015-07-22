@@ -6,6 +6,9 @@
 \usage{
 mdy2mmyyyy(x)
 }
+\arguments{
+\item{x}{character date to be formatted}
+}
 \description{
 Pads dates in preparation for POSIX coercion
 }
