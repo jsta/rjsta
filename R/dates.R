@@ -25,3 +25,49 @@ mdy2mmyyyy<-function(x){
    
   paste(month,"/",day,"/",year,sep="")
 }
+
+#'@name date456posix
+#'@title Convert numeric dates in mddyy to POSIXct
+#'@param input numeric where the first 1-2 digits specify the month attribute because leading zeros have been stripped
+#'@param century numeric century recommended choice of "19" or "20"
+#'@export
+#'@examples
+#'x<-51514
+#'date56posix(x,century="20")
+#'dates<-c("51514","101214","8714","1214","81412")
+#'date456posix(dates,century="20")
+
+date456posix<-function(x,century){
+  year<-paste0(century,substring(x,(nchar(x)-1),nchar(x)))
+  day<-substring(x,(nchar(x)-3),nchar(x)-2)
+  
+  if(any(as.numeric(day)>31)){
+    day<-as.character(sapply(day,function(x){
+      if(as.numeric(x)>31){
+        x<-substring(x,2,2)
+      }
+      x
+    }))
+  }
+  
+  
+  mon<-substring(x,1,nchar(x)-4)
+  
+  if(any(nchar(mon)==0)){
+    mon[which(nchar(mon)==0)]<-substring(x[which(nchar(mon)==0)],1,1)
+  }
+  
+  mon<-as.character(sapply(mon,function(x){
+  if(as.numeric(x)<10){
+    x<-paste0("0",x)
+  }else{
+    x
+  }
+  }))
+  
+  date<-paste0(year,"-",mon,"-",day)
+  return(as.POSIXct(strptime(date,format="%Y-%m-%d")))
+}
+  
+  
+  
