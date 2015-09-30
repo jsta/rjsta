@@ -28,12 +28,10 @@ mdy2mmyyyy<-function(x){
 
 #'@name date456posix
 #'@title Convert numeric dates in mddyy to POSIXct
-#'@param input numeric where the first 1-2 digits specify the month attribute because leading zeros have been stripped
+#'@param x numeric where the first 1-2 digits specify the month attribute because leading zeros have been stripped
 #'@param century numeric century recommended choice of "19" or "20"
 #'@export
 #'@examples
-#'x<-51514
-#'date56posix(x,century="20")
 #'dates<-c("51514","101214","8714","1214","81412")
 #'date456posix(dates,century="20")
 
