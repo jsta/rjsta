@@ -15,7 +15,7 @@ date456posix(x, century)
 Convert numeric dates in mddyy to POSIXct
 }
 \examples{
-dates<-c("51514","101214","8714","1214","81412")
-date456posix(dates,century="20")
+dates <- c("51514", "101214", "8714", "1214", "81412")
+date456posix(dates, century = "20")
 }
 

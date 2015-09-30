@@ -15,9 +15,9 @@ lookupkey(key, input)
 Convert character vector based on lookup values
 }
 \examples{
-key<-cbind(c("one","one","two","three","four",
-"five"),c("one1","one11","two2","three3","over","over"))
-input<-c("one","two","three","four","five")
-lookupkey(key,input)
+key <- cbind(c("one", "one", "two", "three", "four",
+"five"), c("one1", "one11", "two2", "three3", "over", "over"))
+input <- c("one", "two", "three", "four", "five")
+lookupkey(key, input)
 }
 
