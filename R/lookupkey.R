@@ -4,14 +4,14 @@
 #'@param input character vector
 #'@export
 #'@examples
-#'key<-cbind(c("one","one","two","three","four",
-#'"five"),c("one1","one11","two2","three3","over","over"))
-#'input<-c("one","two","three","four","five")
-#'lookupkey(key,input)
+#'key <- cbind(c("one", "one", "two", "three", "four",
+#'"five"), c("one1", "one11", "two2", "three3", "over", "over"))
+#'input <- c("one", "two", "three", "four", "five")
+#'lookupkey(key, input)
 #'
-lookupkey<-function(key,input){
-  from<-key[,1]
-  to2<-key[,2]
-  input[match(from,input)]<-to2
+lookupkey <- function(key, input){
+  from <- key[,1]
+  to2 <- key[,2]
+  input[match(from, input)] <- to2
   input
 }
