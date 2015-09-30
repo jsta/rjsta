@@ -9,13 +9,14 @@ lookupkey(key, input)
 \arguments{
 \item{key}{data.frame or matrix where the first column are the strings to be corrected and the second is the "corrected" definitions.}
 
-\item{input}{character cevtor}
+\item{input}{character vector}
 }
 \description{
 Convert character vector based on lookup values
 }
 \examples{
-key<-cbind(c("one","two","three","four","five"),c("one1","two2","three3","over","over"))
+key<-cbind(c("one","one","two","three","four",
+"five"),c("one1","one11","two2","three3","over","over"))
 input<-c("one","two","three","four","five")
 lookupkey(key,input)
 }

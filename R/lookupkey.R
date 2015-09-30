@@ -1,10 +1,11 @@
 #'@name lookupkey
 #'@title Convert character vector based on lookup values
 #'@param key data.frame or matrix where the first column are the strings to be corrected and the second is the "corrected" definitions.
-#'@param input character cevtor
+#'@param input character vector
 #'@export
 #'@examples
-#'key<-cbind(c("one","two","three","four","five"),c("one1","two2","three3","over","over"))
+#'key<-cbind(c("one","one","two","three","four",
+#'"five"),c("one1","one11","two2","three3","over","over"))
 #'input<-c("one","two","three","four","five")
 #'lookupkey(key,input)
 #'
