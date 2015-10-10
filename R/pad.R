@@ -2,6 +2,7 @@
 #'@title Align a data.frame to a template
 #'@param template data.frame
 #'@param target data.frame
+#'@export
 #'@examples
 #'target <- data.frame(matrix(NA, ncol = 5))
 #'template <- data.frame(matrix(NA, ncol = 6))
