@@ -35,7 +35,8 @@ mdy2mmyyyy <- function(x){
 #'@param century numeric century recommended choice of "19" or "20"
 #'@export
 #'@examples
-#'dates <- c("51514", "101214", "8714", "1214", "81412")
+#'dates <- c("51514", "101214", "8714", "1214", "81412", "2315")
+#'
 #'date456posix(dates, century = "20")
 date456posix <- function(x, century){
   year <- paste0(century, substring(x, (nchar(x) - 1), nchar(x)))
@@ -50,6 +51,15 @@ date456posix <- function(x, century){
     }))
   }
   
+  if(any(nchar(x) < 5)){
+    day <- as.character(sapply(x, function(x){
+      if(nchar(x) <5){
+        paste0("0", substring(x, (nchar(x) - 2), nchar(x) - 2))
+      }else{
+        substring(x, (nchar(x) - 3), nchar(x) - 2)
+      }
+    }))
+  }
   
   mon <- substring(x, 1, nchar(x) - 4)
   
@@ -67,4 +77,15 @@ date456posix <- function(x, century){
   
   date <- paste0(year, "-", mon, "-", day)
   return(as.POSIXct(strptime(date, format="%Y-%m-%d")))
+}
+
+#'@name yyyymm_expand
+#'@title Expand numeric dates in yyyymm to yyyy-mm
+#'@param x numeric in yyyymm format
+#'@export
+#'@examples
+#'dates <- c("200812", "201201")
+#'sapply(dates, yyyymm2posix)
+yyyymm_expand <- function(x){
+  strftime(as.POSIXct(strptime(paste0(substring(x, 1, 4), "-", substring(x, 5, 6), "-01"), format = "%Y-%m-%d")), "%Y-%m")
 }
