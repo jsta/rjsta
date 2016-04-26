@@ -2,8 +2,8 @@ Package: jsta
 Title: Joseph Stachelek's Personal Library of Functions
 Description: A library of functions to manipulate date fields, calculate
     salinity,...
-Version: 0.1-1
-Date: 2015-05-28
+Version: 0.1-2
+Date: 2016-04-26
 Author: Joseph Stachelek <jstachel@sfwmd.gov>
 Maintainer: Joseph Stachelek <jstachel@sfwmd.gov>
 License: GPL (>= 2)
