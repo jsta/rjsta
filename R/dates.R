@@ -5,6 +5,7 @@
 #'@export
 #'@examples
 #' x <- "5/5/15"
+#' y <- "6/27/1989"
 #' mdy2mmyyyy(x)
 mdy2mmyyyy <- function(x){
   
@@ -85,7 +86,7 @@ date456posix <- function(x, century){
 #'@export
 #'@examples
 #'dates <- c("200812", "201201")
-#'sapply(dates, yyyymm2posix)
+#'sapply(dates, yyyymm_expand)
 yyyymm_expand <- function(x){
   strftime(as.POSIXct(strptime(paste0(substring(x, 1, 4), "-", substring(x, 5, 6), "-01"), format = "%Y-%m-%d")), "%Y-%m")
 }

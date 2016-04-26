@@ -11,6 +11,6 @@ yyyymm_expand(x)
 }
 \examples{
 dates <- c("200812", "201201")
-sapply(dates, yyyymm2posix)
+sapply(dates, yyyymm_expand)
 }
 
