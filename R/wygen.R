@@ -28,7 +28,7 @@ wygen <- function(dates, last_month = 4){
       wy <- year
     }
   }
-  print(c((last_month + 1):12, 1:last_month))
+  
   wy_month <- which(c((last_month + 1):12, 1:last_month) %in% month)
   
   list(wy = wy, wy_month = wy_month)
