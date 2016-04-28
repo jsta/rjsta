@@ -14,6 +14,7 @@ Pads dates in preparation for POSIX coercion
 }
 \examples{
 x <- "5/5/15"
+y <- "6/27/1989"
 mdy2mmyyyy(x)
 }
 

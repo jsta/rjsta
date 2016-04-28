@@ -1,12 +1,15 @@
 #'@name wygen
-#'@title Generate Water Year(WY) tags based on a May 1st - April 30th WY.
+#'@title Generate Water Year(WY) tags based on a POSIX date and specified last month of the WY.
+#'@description Generate Water Year(WY) tags based on a POSIX date and specified last month of the WY.
 #'@export
 #'@param dates character date that passes coercion to POSIX formatting
+#'@param last_month numeric last month of water year
 #'@examples
-#'dates<-"2014-01-01"
+#'dates <- "2014-01-01"
+#'dates <- "2015-09-14"
 #'wygen(dates)
 
-wygen <- function(dates){
+wygen <- function(dates, last_month = 4){
   if(class(dates)[1] != "POSIXct"){
   dates <- as.POSIXct(dates)
     if(all(is.na(dates))){
@@ -19,11 +22,14 @@ wygen <- function(dates){
   
   wy <- NA
   if(!is.na(month)){
-    if(month > 4){
+    if(month > last_month){
       wy <- year + 1
     }else{
       wy <- year
     }
   }
-  wy
+  print(c((last_month + 1):12, 1:last_month))
+  wy_month <- which(c((last_month + 1):12, 1:last_month) %in% month)
+  
+  list(wy = wy, wy_month = wy_month)
 }

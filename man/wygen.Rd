@@ -2,15 +2,21 @@
 % Please edit documentation in R/wygen.R
 \name{wygen}
 \alias{wygen}
-\title{Generate Water Year(WY) tags based on a May 1st - April 30th WY.}
+\title{Generate Water Year(WY) tags based on a POSIX date and specified last month of the WY.}
 \usage{
-wygen(dates)
+wygen(dates, last_month = 4)
 }
 \arguments{
 \item{dates}{character date that passes coercion to POSIX formatting}
+
+\item{last_month}{numeric last month of water year}
+}
+\description{
+Generate Water Year(WY) tags based on a POSIX date and specified last month of the WY.
 }
 \examples{
-dates<-"2014-01-01"
+dates <- "2014-01-01"
+dates <- "2015-09-14"
 wygen(dates)
 }
 
