@@ -11,9 +11,15 @@ date456posix(x, century)
 
 \item{century}{numeric century recommended choice of "19" or "20"}
 }
+\details{
+Warning! Entries with a "real" two digit month but a "false" one digit day will assume that the return value should be a "false" one digit month and a "real" two digit day. For example, "10/6/2016" will return "2016-01-06". Consider using the \code{\link[jsta]{mdy2mmyyy}} function instead.
+}
 \examples{
 dates <- c("51514", "101214", "8714", "1214", "81412", "2315")
 
 date456posix(dates, century = "20")
+}
+\seealso{
+\code{\link[jsta]{mdy2mmyyy}}
 }
 

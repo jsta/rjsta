@@ -34,6 +34,8 @@ mdy2mmyyyy <- function(x){
 #'@title Convert numeric dates in mddyy to POSIXct
 #'@param x numeric where the first 1-2 digits specify the month attribute because leading zeros have been stripped
 #'@param century numeric century recommended choice of "19" or "20"
+#'@details Warning! Entries with a "real" two digit month but a "false" one digit day will assume that the return value should be a "false" one digit month and a "real" two digit day. For example, "10/6/2016" will return "2016-01-06". Consider using the \code{\link[jsta]{mdy2mmyyy}} function instead.
+#'@seealso \code{\link[jsta]{mdy2mmyyy}}
 #'@export
 #'@examples
 #'dates <- c("51514", "101214", "8714", "1214", "81412", "2315")
