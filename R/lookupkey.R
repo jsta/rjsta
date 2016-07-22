@@ -15,9 +15,10 @@ lookupkey <- function(key, input){
   input_length <- length(input)
   
   key <- data.frame(key, stringsAsFactors = FALSE)
-  input <- data.frame(X1 = input, stringsAsFactors = FALSE)
+  input <- data.frame(V1 = input, stringsAsFactors = FALSE)
   
-  output <- merge(key, input)[,2]
+  output <- merge(key, input, all.y = TRUE)[,2]
+  output[is.na(output)] <- merge(key, input, all.y = TRUE)[which(is.na(output)),1]
   
   if(input_length != length(output)){
     stop("truncated input due to mismatched key length")
