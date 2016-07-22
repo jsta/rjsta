@@ -4,14 +4,24 @@
 #'@param input character vector
 #'@export
 #'@examples
-#'key <- cbind(c("one", "one", "two", "three", "four",
-#'"five"), c("one1", "one11", "two2", "three3", "over", "over"))
-#'input <- c("one", "two", "three", "four", "five")
+#'key <- cbind(c("one", "two", "three", "four",
+#'"five"), c("one1", "two2", "three3", "over", "over"))
+#'input <- c("one", "one", "two", "three", "four", "five")
 #'lookupkey(key, input)
 #'
 lookupkey <- function(key, input){
-  from <- key[,1]
-  to2 <- key[,2]
-  input[match(from, input)] <- to2
-  input
+  #add a check for duplicate 'to' key values
+  
+  input_length <- length(input)
+  
+  key <- data.frame(key, stringsAsFactors = FALSE)
+  input <- data.frame(X1 = input, stringsAsFactors = FALSE)
+  
+  output <- merge(key, input)[,2]
+  
+  if(input_length != length(output)){
+    stop("truncated input due to mismatched key length")
+  }
+  
+  output
 }

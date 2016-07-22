@@ -12,9 +12,9 @@ lookupkey(key, input)
 \item{input}{character vector}
 }
 \examples{
-key <- cbind(c("one", "one", "two", "three", "four",
-"five"), c("one1", "one11", "two2", "three3", "over", "over"))
-input <- c("one", "two", "three", "four", "five")
+key <- cbind(c("one", "two", "three", "four",
+"five"), c("one1", "two2", "three3", "over", "over"))
+input <- c("one", "one", "two", "three", "four", "five")
 lookupkey(key, input)
 
 }
