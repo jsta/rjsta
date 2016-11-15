@@ -25,7 +25,7 @@ dms2dd <- function(x){
 #' dd <- -80.37198
 #' dd2dms(dd)
 dd2dms <- function(x){
-  degrees <- trunc(dd)
+  degrees <- trunc(x)
   minutes <- abs((x - degrees)) * 60
   seconds <- (minutes - trunc(minutes)) * 60
   minutes <- trunc(minutes)
