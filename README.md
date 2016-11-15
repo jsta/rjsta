@@ -1,5 +1,4 @@
-# Joseph Stachelek's
-# Personal Library of Functions
+# Joseph Stachelek's Personal Library of Functions
 
 ## Installation
 
