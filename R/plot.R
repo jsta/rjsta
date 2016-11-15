@@ -17,11 +17,3 @@ plot_invisible <- function(...){
   res
 }
 
-
-#' @examples
-#' plots <- invisible(c(plot(1), plot(2)))
-#' raw_montage()
-raw_montage <- function(plot_call){
-
-  
-}
