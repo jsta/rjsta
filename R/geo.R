@@ -13,3 +13,22 @@ dms2dd <- function(x){
     x[1] - x[2]/60 - x[3]/60/60  
   }
 }
+
+#' dd2dms
+#' @description Convert decimal degree coordinates to degrees, minutes, and seconds.
+#' @param x numeric vector of length 1 corresonding to decimal degrees
+#' @export
+#' @examples
+#' dd <- 25.31015
+#' dd2dms(dd)
+#' 
+#' dd <- -80.37198
+#' dd2dms(dd)
+dd2dms <- function(x){
+  degrees <- trunc(dd)
+  minutes <- abs((x - degrees)) * 60
+  seconds <- (minutes - trunc(minutes)) * 60
+  minutes <- trunc(minutes)
+  
+  c(degrees, minutes, seconds)
+}
