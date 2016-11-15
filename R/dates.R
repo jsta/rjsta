@@ -8,7 +8,6 @@
 #' y <- "6/27/1989"
 #' mdy2mmyyyy(x)
 mdy2mmyyyy <- function(x){
-  
   #strsplit based on "/"
   month <- strsplit(x, "/")[[1]][1]
   if(nchar(month) < 2){
