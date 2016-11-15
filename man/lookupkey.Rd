@@ -13,7 +13,7 @@ lookupkey(key, input)
 }
 \examples{
 key <- cbind(c("one", "two", "three", "four",
-"five"), c("one1", "two2", "three3", "over", "over"))
+          "five"), c("one1", "two2", "three3", "over", "over"))
 input <- c("one", "one", "two", "three", "four", "five")
 lookupkey(key, input)
 

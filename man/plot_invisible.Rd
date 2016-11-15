@@ -4,10 +4,12 @@
 \alias{plot_invisible}
 \title{plot_invisible}
 \usage{
-plot_invisible(...)
+plot_invisible(text, outpath)
 }
 \arguments{
-\item{...}{character plotting code to be evaluated}
+\item{text}{character plotting code to be evaluated}
+
+\item{outpath}{file.path}
 }
 \description{
 Wrapper to silently create a plot
@@ -16,6 +18,8 @@ Wrapper to silently create a plot
 Stores plots as image files in the temporary workspace (See <http://stackoverflow.com/questions/20363266/how-can-i-suppress-the-creation-of-a-plot-while-calling-a-function-in-r>)
 }
 \examples{
-plot_invisible("plot(1)")
+\dontrun{
+plot_invisible("plot(1)", "test.png")
+}
 }
 
