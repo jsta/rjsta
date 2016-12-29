@@ -1,11 +1,14 @@
 Package: jsta
 Title: Joseph Stachelek's Personal Library of Functions
 Description: A library of functions to manipulate date fields, calculate
-    salinity,...
-Version: 0.1-2
-Date: 2016-04-26
-Author: Joseph Stachelek <jstachel@sfwmd.gov>
-Maintainer: Joseph Stachelek <jstachel@sfwmd.gov>
+    salinity from conductivity, pad string fields,
+    calculate polar coordinates, ...
+Version: 0.1-3
+Author: Joseph Stachelek <stachel2@msu.edu>
+Maintainer: Joseph Stachelek <stachel2@msu.edu>
+Imports: rvest,
+         xml2,
+         WikipediR
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 5.0.1
