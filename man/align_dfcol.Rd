@@ -11,6 +11,9 @@ align_dfcol(target, template)
 
 \item{template}{data.frame}
 }
+\description{
+align_dfcol
+}
 \examples{
 target <- data.frame(matrix(NA, ncol = 5))
 template <- data.frame(matrix(NA, ncol = 6))

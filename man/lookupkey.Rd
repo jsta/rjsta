@@ -11,6 +11,9 @@ lookupkey(key, input)
 
 \item{input}{character vector}
 }
+\description{
+lookupkey
+}
 \examples{
 key <- cbind(c("one", "two", "three", "four",
           "five"), c("one1", "two2", "three3", "over", "over"))

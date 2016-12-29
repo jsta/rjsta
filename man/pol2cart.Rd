@@ -11,6 +11,9 @@ pol2cart(theta, rho)
 
 \item{rho}{numeric distance from the origin (0,0)}
 }
+\description{
+pol2cart
+}
 \examples{
 pol2cart(1.0443,1.9901)
 }

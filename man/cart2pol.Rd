@@ -11,6 +11,9 @@ cart2pol(x, y)
 
 \item{y}{numeric coordinate}
 }
+\description{
+cart2pol
+}
 \examples{
 cart2pol(1,sin(6)+2)
 }

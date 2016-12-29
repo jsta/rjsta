@@ -9,6 +9,9 @@ yyyymm_expand(x)
 \arguments{
 \item{x}{numeric in yyyymm format}
 }
+\description{
+yyyymm_expand
+}
 \examples{
 dates <- c("200812", "201201")
 sapply(dates, yyyymm_expand)

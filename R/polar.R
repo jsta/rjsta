@@ -1,4 +1,4 @@
-#'@name cart2pol
+#' cart2pol
 #'@title Convert cartographic (x,y) coordinates to polar coordinates
 #'@export
 #'@param x numeric coordinate
@@ -11,7 +11,7 @@ cart2pol<-function(x,y){
   c(theta,rho)
 }
 
-#'@name pol2cart
+#' pol2cart
 #'@title Convert polar coordinates to cartographic (x,y) coordinates
 #'@param theta numeric angle relative to the positive x-axis
 #'@param rho numeric distance from the origin (0,0)

@@ -29,7 +29,7 @@ mdy2mmyyyy <- function(x){
   paste(month, "/", day, "/", year, sep="")
 }
 
-#'@name date456posix
+#' date456posix
 #'@title Convert numeric dates in mddyy to POSIXct
 #'@param x numeric where the first 1-2 digits specify the month attribute because leading zeros have been stripped
 #'@param century numeric century recommended choice of "19" or "20"
@@ -81,7 +81,7 @@ date456posix <- function(x, century){
   return(as.POSIXct(strptime(date, format="%Y-%m-%d")))
 }
 
-#'@name yyyymm_expand
+#' yyyymm_expand
 #'@title Expand numeric dates in yyyymm to yyyy-mm
 #'@param x numeric in yyyymm format
 #'@export

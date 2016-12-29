@@ -11,6 +11,9 @@ date456posix(x, century)
 
 \item{century}{numeric century recommended choice of "19" or "20"}
 }
+\description{
+date456posix
+}
 \details{
 Warning! Entries with a "real" two digit month but a "false" one digit day will assume that the return value should be a "false" one digit month and a "real" two digit day. For example, "10/6/2016" will return "2016-01-06". Consider using the \code{mdy2mmyyy} function instead.
 }

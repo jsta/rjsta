@@ -1,4 +1,4 @@
-#'@name lookupkey
+#' lookupkey
 #'@title Convert character vector based on lookup values
 #'@param key data.frame or matrix where the first column are the strings to be corrected and the second is the "corrected" definitions.
 #'@param input character vector

@@ -13,6 +13,9 @@ cond2sal(c, t = 25, P = 0)
 
 \item{P}{numeric optional pressure (defaults to 0)}
 }
+\description{
+cond2sal
+}
 \details{
 algorithm based off an excel implementation by N. Iricanin
 }

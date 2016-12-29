@@ -1,4 +1,4 @@
-#'@name align_dfcol
+#' align_dfcol
 #'@title Align a data.frame to a template
 #'@param template data.frame
 #'@param target data.frame

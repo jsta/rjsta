@@ -1,4 +1,4 @@
-#'@name cond2sal
+#' cond2sal
 #'@title Conductivity to salinity conversion
 #'@export
 #'@param c numeric conducitivity in uS (measurements in mS need to multiplied by 1000)
