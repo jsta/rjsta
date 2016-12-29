@@ -5,7 +5,7 @@
 #' @export
 #' @param lake_name character
 #' @examples \dontrun{
-#' res <- get_lake_wiki("Lake Nipigon")
+#' get_lake_wiki("Lake Nipigon")
 #' } 
 get_lake_wiki <- function(lake_name){
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
@@ -31,7 +31,7 @@ get_lake_wiki <- function(lake_name){
                grep("N", coords))
               )][1:2]
   
-  coords <- paste(gsub(";", "", coords), collapse = ",")
+  coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
   res[which(res[,1] == "Coordinates"), 2] <- coords
   
   # rm junk rows
@@ -45,4 +45,28 @@ get_lake_wiki <- function(lake_name){
   
   
   res
+}
+
+#' map_lake_wiki
+#' @param lake_name character
+#' @param ... arguments passed to maps::map
+#' @importFrom maps map
+#' @importFrom sp coordinates
+#' @importFrom graphics points
+#' @export
+#' @examples \dontrun{
+#' map_lake_wiki("Corey Lake", "usa")
+#' 
+#' map_lake_wiki("Lake Nipigon", regions = "Canada")
+#' }
+map_lake_wiki <- function(lake_name, ...){
+
+  res <- get_lake_wiki(lake_name)
+  coords <- as.numeric(strsplit(res[which(res[,1] == "Coordinates"), 2],
+              ",")[[1]])
+  res <- data.frame(matrix(rev(coords), ncol = 2))
+  sp::coordinates(res) <- ~X1 + X2
+   
+  maps::map(...)
+  points(res, col = "red", cex = 1.5, pch = 19)
 }

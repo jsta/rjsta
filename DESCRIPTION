@@ -8,7 +8,9 @@ Author: Joseph Stachelek <stachel2@msu.edu>
 Maintainer: Joseph Stachelek <stachel2@msu.edu>
 Imports: rvest,
          xml2,
-         WikipediR
+         WikipediR,
+         maps,
+         sp
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 5.0.1
