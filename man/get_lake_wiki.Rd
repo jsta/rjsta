@@ -14,7 +14,7 @@ get_lake_wiki
 }
 \examples{
 \dontrun{
-get_lake_wiki("Lake Nipigon")
+res <- get_lake_wiki("Lake Nipigon")
 } 
 }
 

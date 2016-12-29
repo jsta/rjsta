@@ -5,9 +5,8 @@
 #' @export
 #' @param lake_name character
 #' @examples \dontrun{
-#' get_lake_wiki("Lake Nipigon")
+#' res <- get_lake_wiki("Lake Nipigon")
 #' } 
-
 get_lake_wiki <- function(lake_name){
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
                                  as_wikitext = FALSE)
@@ -20,11 +19,18 @@ get_lake_wiki <- function(lake_name){
   # format coordinates ####
   coords <- res[which(res[,1] == "Coordinates"), 2]
   coords <- strsplit(coords, "\\/")[[1]]
+  
   coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
   coords <- sapply(coords, function(x) strsplit(x, " "))
   coords <- paste(unlist(coords), collapse = ",")
   coords <- strsplit(coords, ",")[[1]]
-  coords <- coords[nchar(coords) == 9][1:2]
+  
+  coords <- coords[!(1:length(coords) %in% 
+             c(which(nchar(coords) == 0),
+               grep("W", coords),
+               grep("N", coords))
+              )][1:2]
+  
   coords <- paste(gsub(";", "", coords), collapse = ",")
   res[which(res[,1] == "Coordinates"), 2] <- coords
   
