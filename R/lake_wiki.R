@@ -8,6 +8,16 @@
 #' get_lake_wiki("Lake Nipigon")
 #' } 
 get_lake_wiki <- function(lake_name){
+  # display page link
+  page_metadata <- page_info("en","wikipedia", page = lake_name)$query$pages
+
+  page_link <- page_metadata[[1]][["fullurl"]]
+  message(paste0("Retrieving data from: ", page_link))
+  
+  # display page link in RStudio viewer pane
+  
+  
+  # get content
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
                                  as_wikitext = FALSE)
   res <- res$parse$text[[1]]
