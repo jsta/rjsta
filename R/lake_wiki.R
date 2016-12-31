@@ -35,6 +35,12 @@ get_lake_wiki <- function(lake_name){
   res[which(res[,1] == "Coordinates"), 2] <- coords
   
   # rm junk rows
+  if(any(res[,1] == "")){
+    res <- res[-which(res[,1] == ""),]
+  }
+  if(any(nchar(res[,1]) > 20)){
+    res <- res[-which(nchar(res[,1]) > 20),]
+  }
   if(length(grep("well-defined", res[,1])) != 0){
     res <- res[!(1:nrow(res) %in% grep("well-defined", res[,1])),]
     message("Shore length is not a well-defined measure.")
@@ -42,7 +48,9 @@ get_lake_wiki <- function(lake_name){
   if(length(grep("Islands", res[,1])) != 0){
     res <- res[!(1:nrow(res) %in% grep("Islands", res[,1])),]
   }
-  
+  if(length(grep("Settlements", res[,1])) != 0){
+    res <- res[!(1:nrow(res) %in% grep("Settlements", res[,1])),]
+  }
   
   res
 }
