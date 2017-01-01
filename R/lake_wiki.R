@@ -1,8 +1,28 @@
+#' lake_wiki
+#' @param lake_name character
+#' @param map logical produce map of lake location?
+#' @param ... arguments passed to maps::map
+#' @export
+#' @examples 
+#' lake_wiki("Lake Mendota")
+#' lake_wiki("Lake Mendota", map = TRUE, "usa")
+#' lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
+lake_wiki <- function(lake_name, map = FALSE, ...){
+  
+  res <- get_lake_wiki(lake_name)
+  
+  if(map){
+    map_lake_wiki(res, ...)
+  }
+  
+  res
+}
+
+
 #' get_lake_wiki
 #' @import WikipediR
 #' @import rvest
 #' @importFrom xml2 read_html
-#' @export
 #' @param lake_name character
 #' @examples \dontrun{
 #' get_lake_wiki("Lake Nipigon")
@@ -15,7 +35,16 @@ get_lake_wiki <- function(lake_name){
   message(paste0("Retrieving data from: ", page_link))
   
   # display page link in RStudio viewer pane
-  
+  # https://support.rstudio.com/hc/en-us/articles/202133558-Extending-RStudio-with-the-Viewer-Pane
+  # tempDir <- tempfile()
+  # dir.create(tempDir)
+  # htmlFile <- file.path(tempDir, "index.html")
+  # fileConn <- file(htmlFile)
+  # page_link_code <- paste0("<a href = ", page_link, "> ", lake_name, " </a>")
+  # writeLines(page_link, fileConn)
+  # close(fileConn)
+  # viewer <- getOption("viewer")
+  # viewer(htmlFile)
   
   # get content
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
@@ -66,20 +95,18 @@ get_lake_wiki <- function(lake_name){
 }
 
 #' map_lake_wiki
-#' @param lake_name character
+#' @param res data.frame output of get_lake_wiki
 #' @param ... arguments passed to maps::map
 #' @importFrom maps map
 #' @importFrom sp coordinates
 #' @importFrom graphics points
-#' @export
 #' @examples \dontrun{
-#' map_lake_wiki("Corey Lake", "usa")
+#' map_lake_wiki(get_lake_wiki("Corey Lake"), "usa")
 #' 
-#' map_lake_wiki("Lake Nipigon", regions = "Canada")
+#' map_lake_wiki(get_lake_wiki("Lake Nipigon"), regions = "Canada")
 #' }
-map_lake_wiki <- function(lake_name, ...){
+map_lake_wiki <- function(res, ...){
 
-  res <- get_lake_wiki(lake_name)
   coords <- as.numeric(strsplit(res[which(res[,1] == "Coordinates"), 2],
               ",")[[1]])
   res <- data.frame(matrix(rev(coords), ncol = 2))

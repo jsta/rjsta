@@ -4,10 +4,10 @@
 \alias{map_lake_wiki}
 \title{map_lake_wiki}
 \usage{
-map_lake_wiki(lake_name, ...)
+map_lake_wiki(res, ...)
 }
 \arguments{
-\item{lake_name}{character}
+\item{res}{data.frame output of get_lake_wiki}
 
 \item{...}{arguments passed to maps::map}
 }
@@ -16,9 +16,9 @@ map_lake_wiki
 }
 \examples{
 \dontrun{
-map_lake_wiki("Corey Lake", "usa")
+map_lake_wiki(get_lake_wiki("Corey Lake"), "usa")
 
-map_lake_wiki("Lake Nipigon", regions = "Canada")
+map_lake_wiki(get_lake_wiki("Lake Nipigon"), regions = "Canada")
 }
 }
 
