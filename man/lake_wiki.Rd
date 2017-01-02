@@ -22,5 +22,8 @@ lake_wiki("Lake Bella Vista (Michigan)")
 lake_wiki("Lake Mendota")
 lake_wiki("Lake Mendota", map = TRUE, "usa")
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
+
+# throws warning on redirects
+lake_wiki("Beals Lake")
 }
 

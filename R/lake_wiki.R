@@ -9,6 +9,10 @@
 #' lake_wiki("Lake Mendota")
 #' lake_wiki("Lake Mendota", map = TRUE, "usa")
 #' lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
+#' 
+#' # throws warning on redirects
+#' lake_wiki("Beals Lake")
+
 lake_wiki <- function(lake_name, map = FALSE, ...){
   
   res <- get_lake_wiki(lake_name)
@@ -36,66 +40,80 @@ get_lake_wiki <- function(lake_name){
   page_link <- page_metadata[[1]][["fullurl"]]
   message(paste0("Retrieving data from: ", page_link))
   
-  # display page link in RStudio viewer pane
-  # https://support.rstudio.com/hc/en-us/articles/202133558-Extending-RStudio-with-the-Viewer-Pane
-  # tempDir <- tempfile()
-  # dir.create(tempDir)
-  # htmlFile <- file.path(tempDir, "index.html")
-  # fileConn <- file(htmlFile)
-  # page_link_code <- paste0("<a href = ", page_link, "> ", lake_name, " </a>")
-  # writeLines(page_link, fileConn)
-  # close(fileConn)
-  # viewer <- getOption("viewer")
-  # viewer(htmlFile)
-  
   # get content
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
                                  as_wikitext = FALSE)
   res <- res$parse$text[[1]]
-  
   res <- xml2::read_html(res)
-  res <- rvest::html_nodes(res, "table")
-  meta_index <- c(grep("Lake", lapply(res, rvest::html_table)),
-                  grep("Pond", lapply(res, rvest::html_table)))
-  res <- rvest::html_table(res[meta_index])[[1]]
+
+  # is_redirect <- function(){
+  #   length(grep("redirect",
+  #               rvest::html_attr(rvest::html_nodes(res, "div"),
+  #                                "class"))) >  0
+  # }
+  # if(!is_redirect()){
+  #   res <- rvest::html_nodes(res, "table")
+  #   meta_index <- c(grep("Lake", lapply(res, rvest::html_table)),
+  #                   grep("Pond", lapply(res, rvest::html_table)))
+  #   res <- rvest::html_table(res[meta_index])[[1]]
+  # }else{
+  #   warning(paste0(lake_name,
+  #     " points to a redirect and does not have its own page."))
+  # }
   
-  # format coordinates ####
-  coords <- res[which(res[,1] == "Coordinates"), 2]
-  coords <- strsplit(coords, "\\/")[[1]]
+  res <- tryCatch({
+    res <- rvest::html_nodes(res, "table")
+    meta_index <- c(grep("Lake", lapply(res, rvest::html_table)),
+                    grep("Pond", lapply(res, rvest::html_table)))
+    res <- rvest::html_table(res[meta_index])[[1]]
+    }, 
+    error = function(cond){
+      message("'", paste0(lake_name,
+             "' points to a redirect and does not have its own page."))
+      return(NA)
+    }
+  )
   
-  coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
-  coords <- sapply(coords, function(x) strsplit(x, " "))
-  coords <- paste(unlist(coords), collapse = ",")
-  coords <- strsplit(coords, ",")[[1]]
-  
-  coords <- coords[!(1:length(coords) %in% 
-             c(which(nchar(coords) == 0),
-               grep("W", coords),
-               grep("N", coords))
-              )][1:2]
-  
-  coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
-  res[which(res[,1] == "Coordinates"), 2] <- coords
-  
-  # rm junk rows
-  if(any(res[,1] == "")){
-    res <- res[-which(res[,1] == ""),]
+  if(!is.na(res)){
+    
+    # format coordinates ####
+    coords <- res[which(res[,1] == "Coordinates"), 2]
+    coords <- strsplit(coords, "\\/")[[1]]
+    
+    coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
+    coords <- sapply(coords, function(x) strsplit(x, " "))
+    coords <- paste(unlist(coords), collapse = ",")
+    coords <- strsplit(coords, ",")[[1]]
+    
+    coords <- coords[!(1:length(coords) %in% 
+               c(which(nchar(coords) == 0),
+                 grep("W", coords),
+                 grep("N", coords))
+                )][1:2]
+    
+    coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
+    res[which(res[,1] == "Coordinates"), 2] <- coords
+    
+    # rm junk rows
+    if(any(res[,1] == "")){
+      res <- res[-which(res[,1] == ""),]
+    }
+    if(any(nchar(res[,1]) > 20)){
+      res <- res[-which(nchar(res[,1]) > 20),]
+    }
+    if(length(grep("well-defined", res[,1])) != 0){
+      res <- res[!(1:nrow(res) %in% grep("well-defined", res[,1])),]
+      message("Shore length is not a well-defined measure.")
+    }
+    if(length(grep("Islands", res[,1])) != 0){
+      res <- res[!(1:nrow(res) %in% grep("Islands", res[,1])),]
+    }
+    if(length(grep("Settlements", res[,1])) != 0){
+      res <- res[!(1:nrow(res) %in% grep("Settlements", res[,1])),]
+    }
+    
+    res
   }
-  if(any(nchar(res[,1]) > 20)){
-    res <- res[-which(nchar(res[,1]) > 20),]
-  }
-  if(length(grep("well-defined", res[,1])) != 0){
-    res <- res[!(1:nrow(res) %in% grep("well-defined", res[,1])),]
-    message("Shore length is not a well-defined measure.")
-  }
-  if(length(grep("Islands", res[,1])) != 0){
-    res <- res[!(1:nrow(res) %in% grep("Islands", res[,1])),]
-  }
-  if(length(grep("Settlements", res[,1])) != 0){
-    res <- res[!(1:nrow(res) %in% grep("Settlements", res[,1])),]
-  }
-  
-  res
 }
 
 #' map_lake_wiki
