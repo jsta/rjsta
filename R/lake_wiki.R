@@ -4,6 +4,7 @@
 #' @param ... arguments passed to maps::map
 #' @export
 #' @examples 
+#' lake_wiki("Lake Bella Vista (Michigan)")
 #' lake_wiki("Lake Mendota")
 #' lake_wiki("Lake Mendota", map = TRUE, "usa")
 #' lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
@@ -53,7 +54,8 @@ get_lake_wiki <- function(lake_name){
   
   res <- xml2::read_html(res)
   res <- rvest::html_nodes(res, "table")
-  res <- rvest::html_table(res[1])[[1]]
+  meta_index <- grep("Lake", lapply(res, rvest::html_table))
+  res <- rvest::html_table(res[meta_index])[[1]]
   
   # format coordinates ####
   coords <- res[which(res[,1] == "Coordinates"), 2]
