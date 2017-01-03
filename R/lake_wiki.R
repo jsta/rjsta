@@ -4,6 +4,7 @@
 #' @param ... arguments passed to maps::map
 #' @export
 #' @examples 
+#' lake_wiki("Lake Michigan")
 #' lake_wiki("Fletcher Pond")
 #' lake_wiki("Lake Bella Vista (Michigan)")
 #' lake_wiki("Lake Mendota")
@@ -12,7 +13,10 @@
 #' 
 #' # throws warning on redirects
 #' lake_wiki("Beals Lake")
-
+#' 
+#' # ignore notability box
+#' lake_wiki("Rainbow Lake (Waterford Township, Michigan)")
+ 
 lake_wiki <- function(lake_name, map = FALSE, ...){
   
   res <- get_lake_wiki(lake_name)
@@ -51,30 +55,21 @@ get_lake_wiki <- function(lake_name){
   #               rvest::html_attr(rvest::html_nodes(res, "div"),
   #                                "class"))) >  0
   # }
-  # if(!is_redirect()){
-  #   res <- rvest::html_nodes(res, "table")
-  #   meta_index <- c(grep("Lake", lapply(res, rvest::html_table)),
-  #                   grep("Pond", lapply(res, rvest::html_table)))
-  #   res <- rvest::html_table(res[meta_index])[[1]]
-  # }else{
-  #   warning(paste0(lake_name,
-  #     " points to a redirect and does not have its own page."))
-  # }
   
   res <- tryCatch({
     res <- rvest::html_nodes(res, "table")
-    meta_index <- c(grep("Lake", lapply(res, rvest::html_table)),
-                    grep("Pond", lapply(res, rvest::html_table)))
+    meta_index <- grep("infobox", rvest::html_attr(res, "class"))
     res <- rvest::html_table(res[meta_index])[[1]]
     }, 
     error = function(cond){
       message("'", paste0(lake_name,
-             "' points to a redirect and does not have its own page."))
+      "' is missing a metadata table or 
+      points to a redirect and does not have its own page"))
       return(NA)
     }
   )
   
-  if(!is.na(res)){
+  if(any(!is.na(res))){
     
     # format coordinates ####
     coords <- res[which(res[,1] == "Coordinates"), 2]

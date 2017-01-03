@@ -17,6 +17,7 @@ lake_wiki(lake_name, map = FALSE, ...)
 lake_wiki
 }
 \examples{
+lake_wiki("Lake Michigan")
 lake_wiki("Fletcher Pond")
 lake_wiki("Lake Bella Vista (Michigan)")
 lake_wiki("Lake Mendota")
@@ -25,5 +26,8 @@ lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 
 # throws warning on redirects
 lake_wiki("Beals Lake")
+
+# ignore notability box
+lake_wiki("Rainbow Lake (Waterford Township, Michigan)")
 }
 
