@@ -32,3 +32,15 @@ dd2dms <- function(x){
   
   c(degrees, minutes, seconds)
 }
+
+#' point_in_poly
+#' @description spatial join modified from spatialEco::point.in.poly
+#' @param dt SpatialPointsDataFrame
+#' @param poly_shape SpatialPolygonsDataFrame
+#' @export
+point_in_poly <- function(dt, poly_shape){
+  dt_pp <- dt[!is.na(sp::over(dt, sp::geometry(poly_shape))),]
+  dt_pp@data <- data.frame(dt_pp@data, sp::over(dt_pp, poly_shape))
+  dt_pp@proj4string <- dt@proj4string
+  dt_pp
+}
