@@ -17,6 +17,7 @@ lake_wiki(lake_name, map = FALSE, ...)
 lake_wiki
 }
 \examples{
+lake_wiki("Bankson Lake")
 lake_wiki("Lake Michigan")
 lake_wiki("Fletcher Pond")
 lake_wiki("Lake Bella Vista (Michigan)")

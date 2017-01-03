@@ -4,6 +4,7 @@
 #' @param ... arguments passed to maps::map
 #' @export
 #' @examples 
+#' lake_wiki("Bankson Lake")
 #' lake_wiki("Lake Michigan")
 #' lake_wiki("Fletcher Pond")
 #' lake_wiki("Lake Bella Vista (Michigan)")
@@ -70,23 +71,39 @@ get_lake_wiki <- function(lake_name){
   )
   
   if(any(!is.na(res))){
-    
     # format coordinates ####
     coords <- res[which(res[,1] == "Coordinates"), 2]
-    coords <- strsplit(coords, "\\/")[[1]]
     
-    coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
-    coords <- sapply(coords, function(x) strsplit(x, " "))
-    coords <- paste(unlist(coords), collapse = ",")
-    coords <- strsplit(coords, ",")[[1]]
+    is_tidy_coords <- function(coords){
+      nchar(coords) < 23
+    }
     
-    coords <- coords[!(1:length(coords) %in% 
-               c(which(nchar(coords) == 0),
-                 grep("W", coords),
-                 grep("N", coords))
-                )][1:2]
+    if(!is_tidy_coords(coords)){
+      coords <- strsplit(coords, "\\/")[[1]]
+      coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
+      coords <- sapply(coords, function(x) strsplit(x, " "))
+      coords <- paste(unlist(coords), collapse = ",")
+      coords <- strsplit(coords, ",")[[1]]
+      
+      coords <- coords[!(1:length(coords) %in% 
+                 c(which(nchar(coords) == 0),
+                   grep("W", coords),
+                   grep("N", coords))
+                  )][1:2]
+      
+      coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
+    }else{
+      is_west <- length(grep("W", coords)) > 0 
+      coords <- strsplit(coords, ", ")[[1]]
+      coords <- strsplit(coords, "[^0-9]+")
+      coords <- lapply(coords, as.numeric)
+      coords <- unlist(lapply(coords, dms2dd))
+      if(is_west){
+        coords[2] <- coords[2] * -1
+      }
+      coords <- paste(coords, collapse = ",")
+    }
     
-    coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
     res[which(res[,1] == "Coordinates"), 2] <- coords
     
     # rm junk rows
