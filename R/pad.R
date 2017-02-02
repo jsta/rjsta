@@ -22,3 +22,14 @@ align_dfcol <- function(target, template){
   target[,match(names(template), names(target))]
   
 }
+
+#' zero_pad
+#' @param x character input to pad
+#' @param digits numeric. number of zeros to pre-append
+#' @examples \dontrun{
+#' zero_pad(1, 2)
+#' zero_pad(1, 3)
+#' }
+zero_pad <- function(x, digits){
+ paste0(paste0(rep(0, digits), collapse = ""), x, collapse = "")
+}
