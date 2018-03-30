@@ -25,4 +25,3 @@ cond2sal(c=52*1000)
 \seealso{
 \code{\link[wq]{ec2pss}}
 }
-

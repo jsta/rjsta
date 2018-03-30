@@ -21,4 +21,3 @@ names(target) <- c(letters[c(3, 1, 2, 4, 8)])
 names(template) <- c(letters[1:6])
 align_dfcol(target =  target, template = template)
 }
-

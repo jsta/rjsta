@@ -17,4 +17,3 @@ pol2cart
 \examples{
 pol2cart(1.0443,1.9901)
 }
-

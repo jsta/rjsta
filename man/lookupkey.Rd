@@ -21,4 +21,3 @@ input <- c("one", "one", "two", "three", "four", "five")
 lookupkey(key, input)
 
 }
-

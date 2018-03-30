@@ -19,4 +19,3 @@ dd2dms(dd)
 dd <- -80.37198
 dd2dms(dd)
 }
-

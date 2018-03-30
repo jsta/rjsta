@@ -25,4 +25,3 @@ date456posix(dates, century = "20")
 \seealso{
 \code{mdy2mmyyy}
 }
-

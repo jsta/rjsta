@@ -14,4 +14,3 @@ point_in_poly(dt, poly_shape)
 \description{
 spatial join modified from spatialEco::point.in.poly
 }
-

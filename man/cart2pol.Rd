@@ -17,4 +17,3 @@ cart2pol
 \examples{
 cart2pol(1,sin(6)+2)
 }
-

@@ -16,4 +16,3 @@ yyyymm_expand
 dates <- c("200812", "201201")
 sapply(dates, yyyymm_expand)
 }
-

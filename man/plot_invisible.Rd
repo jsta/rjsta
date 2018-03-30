@@ -22,4 +22,3 @@ Stores plots as image files in the temporary workspace (See <http://stackoverflo
 plot_invisible("plot(1)", "test.png")
 }
 }
-
