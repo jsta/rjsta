@@ -4,10 +4,14 @@
 \alias{gitignore}
 \title{gitignore}
 \usage{
-gitignore(f, dry.run = FALSE)
+gitignore(f, dry.run = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{f}{file.path or wildcard to add to gitignore}
+
+\item{dry.run}{logical}
+
+\item{verbose}{logical, print operation results?}
 }
 \description{
 gitignore

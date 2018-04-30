@@ -23,5 +23,5 @@ algorithm based off an excel implementation by N. Iricanin
 cond2sal(c=52*1000)
 }
 \seealso{
-\code{\link[wq]{ec2pss}}
+\code{\link[wql]{ec2pss}}
 }

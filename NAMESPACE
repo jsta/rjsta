@@ -2,6 +2,7 @@
 
 export(Mode)
 export(align_dfcol)
+export(break_word)
 export(cart2pol)
 export(cond2sal)
 export(date456posix)
@@ -17,3 +18,4 @@ export(wygen)
 export(yyyymm_expand)
 importFrom(grDevices,dev.off)
 importFrom(grDevices,png)
+importFrom(stringr,str_split)
