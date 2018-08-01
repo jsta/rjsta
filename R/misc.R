@@ -32,3 +32,19 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
     if(verbose){print(current)}
   }
 }
+
+#' Download a file if it doesn't already exist
+#' 
+#' @param url url string
+#' @param destfile file.path
+#' @param overwrite logical force overwrite
+#'
+#' @importFrom utils download.file
+#' @export
+get_if_not_exists <- function(url, destfile, overwrite){
+  if(!file.exists(destfile) | overwrite){
+    download.file(url, destfile)
+  }else{
+    message(paste0("A local copy of ", url, " already exists on disk"))
+  }
+}
