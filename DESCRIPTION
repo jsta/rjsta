@@ -9,8 +9,10 @@ Maintainer: Joseph Stachelek <stachel2@msu.edu>
 Imports: rvest,
          xml2,
          stringr,
-         sp
+         sp,
+         sf,
+         maps
 License: GPL (>= 2)
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests: testthat

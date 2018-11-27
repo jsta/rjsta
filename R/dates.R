@@ -91,3 +91,13 @@ date456posix <- function(x, century){
 yyyymm_expand <- function(x){
   strftime(as.POSIXct(strptime(paste0(substring(x, 1, 4), "-", substring(x, 5, 6), "-01"), format = "%Y-%m-%d")), "%Y-%m")
 }
+
+
+# yr_2_day <- function(x){
+#   # x <- 1
+#   x * 365
+# }
+# 
+# yr_2_month <- function(x){
+#   x * 12
+# }

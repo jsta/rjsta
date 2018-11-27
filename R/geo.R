@@ -44,3 +44,13 @@ point_in_poly <- function(dt, poly_shape){
   dt_pp@proj4string <- dt@proj4string
   dt_pp
 }
+
+#' usa_sf
+#' @description United States basemap
+#' @param crs projection string
+#' @importFrom sf st_as_sf
+#' @importFrom maps map
+#' @export
+usa_sf <- function(crs){
+  sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
+}
