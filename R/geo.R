@@ -54,3 +54,25 @@ point_in_poly <- function(dt, poly_shape){
 usa_sf <- function(crs){
   sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
 }
+
+#' Get sf objects within a source object
+#' 
+#' @param dt source sf object
+#' @param bb bounding object
+#' @importFrom sf st_within
+#' @export
+get_within <- function(dt, bb){
+  dt[sapply(st_within(dt, bb), 
+            function(x) length(x) > 0),]
+}
+
+#' Get intersecting sf subset
+#' 
+#' @param target target sf object
+#' @param src source sf object
+#' @importFrom sf st_intersects
+#' @export
+get_intersects <- function(target, src){
+  target[unlist(lapply(st_intersects(target, src), 
+            function(x) length(x) > 0)),]
+}
