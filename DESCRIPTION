@@ -11,7 +11,9 @@ Imports: rvest,
          stringr,
          sp,
          sf,
-         maps
+         maps,
+         httr,
+         jsonlite
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 6.1.1
