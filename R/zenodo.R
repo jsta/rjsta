@@ -11,7 +11,7 @@
 #' @export
 #' 
 #' @examples \dontrun{
-#' download_zenodo(record_id = "2025865")#' 
+#' download_zenodo(record_id = "2025865")
 #' }
 download_zenodo <- function(record_id, dest_folder = "", 
                             token = Sys.getenv("ZENODO_PAT")){
@@ -22,10 +22,18 @@ download_zenodo <- function(record_id, dest_folder = "",
   api_response  <- jsonlite::fromJSON(httr::content(api_response, as = "text"))
   
   file_urls <- api_response$files$links$download
+  norm_path <- function(fldr, x){
+    if(nchar(fldr) > 0){
+      file.path(fldr, x)
+    }else{
+      x
+    }
+  }
   
   invisible(lapply(file_urls, function(x) 
     download.file(x, 
-                  file.path(dest_folder, basename(x)))))
+                  norm_path(dest_folder, basename(x)))))
+                  
 }
 
 
