@@ -22,6 +22,6 @@ https://github.com/zenodo/zenodo/issues/1629#issuecomment-435062462
 }
 \examples{
 \dontrun{
-download_zenodo(record_id = "2025865")#' 
+download_zenodo(record_id = "2025865")
 }
 }

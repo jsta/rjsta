@@ -4,7 +4,7 @@
 \alias{get_if_not_exists}
 \title{Download a file if it doesn't already exist}
 \usage{
-get_if_not_exists(url, destfile, overwrite)
+get_if_not_exists(url, destfile, overwrite = FALSE)
 }
 \arguments{
 \item{url}{url string}
