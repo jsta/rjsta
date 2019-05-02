@@ -41,7 +41,7 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
 #'
 #' @importFrom utils download.file
 #' @export
-get_if_not_exists <- function(url, destfile, overwrite){
+get_if_not_exists <- function(url, destfile, overwrite = FALSE){
   if(!file.exists(destfile) | overwrite){
     download.file(url, destfile)
   }else{
