@@ -35,16 +35,34 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
 
 #' Download a file if it doesn't already exist
 #' 
-#' @param url url string
+#' @param x url string or function to be evaluated
 #' @param destfile file.path
 #' @param overwrite logical force overwrite
 #'
 #' @importFrom utils download.file
 #' @export
-get_if_not_exists <- function(url, destfile, overwrite = FALSE){
-  if(!file.exists(destfile) | overwrite){
-    download.file(url, destfile)
-  }else{
-    message(paste0("A local copy of ", url, " already exists on disk"))
+#' @examples \dontrun{
+#' get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz")
+#' junk_rds <- function(destfile){
+#'      saveRDS(1, destfile)
+#' }
+#' get_if_not_exists(junk_rds, "junk.rds")
+#' }
+get_if_not_exists <- function(x, destfile, overwrite = FALSE){
+  
+  if(is.function(x)){
+    if(!file.exists(destfile)){
+      x(destfile)
+    }else{
+      message(paste0("A local evaulation of x already exists on disk"))
+    }
+  } 
+  
+  if(!is.function(x)){
+    if(!file.exists(destfile) | overwrite){
+      download.file(x, destfile)
+    }else{
+      message(paste0("A local copy of ", x, " already exists on disk"))
+    }
   }
 }
