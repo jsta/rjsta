@@ -4,12 +4,15 @@
 \alias{get_if_not_exists}
 \title{Download a file if it doesn't already exist}
 \usage{
-get_if_not_exists(x, destfile, overwrite = FALSE, ...)
+get_if_not_exists(x, destfile, read_function = readRDS,
+  overwrite = FALSE, ...)
 }
 \arguments{
 \item{x}{url string or function to be evaluated}
 
 \item{destfile}{file.path}
+
+\item{read_function}{function to read existing files, defaults to readRDS}
 
 \item{overwrite}{logical force overwrite}
 
@@ -20,11 +23,21 @@ Download a file if it doesn't already exist
 }
 \examples{
 \dontrun{
+# unlink("data.gz")
 get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz")
+
 junk_rds <- function(destfile, add_number){
      saveRDS(1 + add_number, destfile)
      return(1 + add_number)
 }
-get_if_not_exists(junk_rds, "junk.rds")
+# unlink("junk.rds")
+x <- get_if_not_exists(junk_rds, "junk.rds", add_number = 1)
+
+junk_csv <- function(destfile, add_number){
+     write.csv(1 + add_number, destfile, row.names = FALSE)
+     return(1 + add_number)
+}
+# unlink("junk.csv")
+x <- get_if_not_exists(junk_csv, "junk.csv", read.csv, add_number = 1)
 }
 }
