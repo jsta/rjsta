@@ -4,12 +4,14 @@
 \alias{get_intersects}
 \title{Get intersecting sf subset}
 \usage{
-get_intersects(target, src)
+get_intersects(target, src, threshold = 0)
 }
 \arguments{
 \item{target}{target sf object}
 
 \item{src}{source sf object}
+
+\item{threshold}{the number of intersects required to be selected}
 }
 \description{
 Get intersecting sf subset

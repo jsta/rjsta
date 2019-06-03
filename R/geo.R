@@ -70,9 +70,10 @@ get_within <- function(dt, bb){
 #' 
 #' @param target target sf object
 #' @param src source sf object
+#' @param threshold the number of intersects required to be selected
 #' @importFrom sf st_intersects
 #' @export
-get_intersects <- function(target, src){
+get_intersects <- function(target, src, threshold = 0){
   target[unlist(lapply(st_intersects(target, src), 
-            function(x) length(x) > 0)),]
+            function(x) length(x) > threshold)),]
 }
