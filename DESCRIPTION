@@ -13,7 +13,8 @@ Imports: rvest,
          sf,
          maps,
          httr,
-         jsonlite
+         jsonlite,
+         gridExtra
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 6.1.1
