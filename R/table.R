@@ -9,7 +9,7 @@
 #' @examples \dontrun{
 #' data(iris)
 #' pdf_table(iris[1:5,])
-#' pdf_table(knitr::kable(iris[1:5,]))
+#' pdf_table(knitr::kable(iris[1:5,]), out_name = "zz2.pdf")
 #' }
 pdf_table <- function(x, out_name = "test.pdf"){
   if(is.data.frame(x)){
@@ -24,7 +24,8 @@ pdf_table <- function(x, out_name = "test.pdf"){
     print(x)
     sink()
     close(zz)
-    system("pandoc -s test.md -o test.pdf")
+    system(paste0("pandoc -s test.md -o ", out_name))
+    unlink("test.md")
   }
 }
 
