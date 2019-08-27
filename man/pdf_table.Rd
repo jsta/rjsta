@@ -17,7 +17,7 @@ Create a pdf snapshot of a data.frame or kable output
 \examples{
 \dontrun{
 data(iris)
-pdf_table(iris[1:5,])
-pdf_table(knitr::kable(iris[1:5,]))
+pdf_table(iris[rep(1:5, 12),])
+pdf_table(knitr::kable(iris[rep(1:5, 12),]), out_name = "zz2.pdf")
 }
 }
