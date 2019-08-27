@@ -50,15 +50,17 @@ point_in_poly <- function(dt, poly_shape){
 #' @param crs projection string
 #' @importFrom sf st_as_sf
 #' @importFrom maps map
+#' @importFrom dplyr filter
 #' @import datasets
+#' @importFrom rlang .data
 #' @export
 usa_sf <- function(crs){
   res <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
-  state_key <- data.frame(state = state.abb, 
-                          ID = tolower(state.name), 
+  state_key <- data.frame(state = datasets::state.abb,
+                          ID = tolower(datasets::state.name),
                           stringsAsFactors = FALSE)
   res <- dplyr::left_join(res, state_key, by = "ID")
-  dplyr::filter(res, !is.na(state))
+  dplyr::filter(res, !is.na(rlang::.data$state))
 }
 
 #' Get sf objects within a source object
