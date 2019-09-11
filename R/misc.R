@@ -38,7 +38,7 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
 #' @param x url string or function to be evaluated
 #' @param destfile file.path
 #' @param read_function function to read existing files, defaults to readRDS
-#' @param overwrite logical force overwrite
+#' @param ow logical force overwrite
 #' @param \dots parameters passed to x
 #'
 #' @importFrom utils download.file
@@ -62,10 +62,10 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
 #' x <- get_if_not_exists(junk_csv, "junk.csv", read.csv, add_number = 1)
 #' }
 get_if_not_exists <- function(x, destfile, read_function = readRDS, 
-                              overwrite = FALSE, ...){
+                              ow = FALSE, ...){
   
   if(is.function(x)){
-    if(!file.exists(destfile) | overwrite){
+    if(!file.exists(destfile) | ow){
       res <- x(destfile, ...)
       return(res)
     }else{
@@ -75,7 +75,7 @@ get_if_not_exists <- function(x, destfile, read_function = readRDS,
   } 
   
   if(!is.function(x)){
-    if(!file.exists(destfile) | overwrite){
+    if(!file.exists(destfile) | ow){
       download.file(x, destfile)
     }else{
       message(paste0("A local copy of ", x, " already exists on disk"))

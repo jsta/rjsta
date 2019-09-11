@@ -4,8 +4,8 @@
 \alias{get_if_not_exists}
 \title{Download a file if it doesn't already exist}
 \usage{
-get_if_not_exists(x, destfile, read_function = readRDS,
-  overwrite = FALSE, ...)
+get_if_not_exists(x, destfile, read_function = readRDS, ow = FALSE,
+  ...)
 }
 \arguments{
 \item{x}{url string or function to be evaluated}
@@ -14,7 +14,7 @@ get_if_not_exists(x, destfile, read_function = readRDS,
 
 \item{read_function}{function to read existing files, defaults to readRDS}
 
-\item{overwrite}{logical force overwrite}
+\item{ow}{logical force overwrite}
 
 \item{\dots}{parameters passed to x}
 }
