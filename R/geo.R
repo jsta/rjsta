@@ -54,13 +54,15 @@ point_in_poly <- function(dt, poly_shape){
 #' @import datasets
 #' @importFrom rlang .data
 #' @export
+#' @examples
+#' usa_sf() 
 usa_sf <- function(crs){
   res <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
   state_key <- data.frame(state = datasets::state.abb,
                           ID = tolower(datasets::state.name),
                           stringsAsFactors = FALSE)
   res <- dplyr::left_join(res, state_key, by = "ID")
-  dplyr::filter(res, !is.na(rlang::.data$state))
+  dplyr::filter(res, !is.na(.data$state))
 }
 
 #' Get sf objects within a source object
