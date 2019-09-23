@@ -16,7 +16,8 @@ Imports: rvest,
          jsonlite,
          gridExtra,
          rlang,
-         dplyr
+         dplyr,
+         maptools
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 6.1.1
