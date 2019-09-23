@@ -52,6 +52,7 @@ point_in_poly <- function(dt, poly_shape){
 #' @importFrom maps map
 #' @importFrom dplyr filter
 #' @import datasets
+#' @import maptools
 #' @importFrom rlang .data
 #' @export
 #' @examples
@@ -63,6 +64,19 @@ usa_sf <- function(crs){
                           stringsAsFactors = FALSE)
   res <- dplyr::left_join(res, state_key, by = "ID")
   dplyr::filter(res, !is.na(.data$state))
+}
+
+#' key_state
+#' @param x object with an unabbreviated state column
+#' @export
+#' @examples 
+#' key_state(data.frame(state.name = datasets::state.name, stringsAsFactors = FALSE))
+key_state <- function(x){
+  key <- data.frame(state.abb = datasets::state.abb, 
+                    state.name = datasets::state.name, 
+                    stringsAsFactors = FALSE)
+  dplyr::left_join(x, key, 
+                   by = c("state.name"))
 }
 
 #' Get sf objects within a source object
