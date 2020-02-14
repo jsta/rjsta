@@ -15,6 +15,7 @@ heatmap
 \examples{
 \dontrun{
 data(iris)
-heatmap(data.frame(iris))
+dt <- iris
+heatmap(dt)
 }
 }

@@ -3,12 +3,14 @@
 #' @param dt data.frame
 #' @importFrom corrr correlate
 #' @importFrom pheatmap pheatmap
-#' @importFrom dplyr `%>%`
+#' @import dplyr
 #' @importFrom grDevices colorRampPalette
 #' @importFrom RColorBrewer brewer.pal
+#' @export
 #' @examples \dontrun{
 #' data(iris)
-#' heatmap(data.frame(iris))
+#' dt <- iris
+#' heatmap(dt)
 #' }
 heatmap <- function(dt){
   # dt <- iris
