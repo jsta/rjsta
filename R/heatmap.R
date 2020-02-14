@@ -13,8 +13,8 @@
 #' jheatmap(dt)
 #' }
 jheatmap <- function(dt){
-  # dt <- iris
-  test <- dt %>%
+  # dt <- ggplot2::diamonds
+  test <- data.frame(dt) %>%
     dplyr::select_if(is.numeric) %>%
     corrr::correlate() %>%
     data.frame()
@@ -26,9 +26,21 @@ jheatmap <- function(dt){
     RColorBrewer::brewer.pal(n = 7, name = "Reds"))
   hmap.palette_blue <-  colorRampPalette(
     RColorBrewer::brewer.pal(n = 7, name = "Blues"))
-  frac_color <- ceiling(range(as.numeric(unlist(test)), na.rm = TRUE) * 10)
-  hmap_cols <- rev(c(rev(hmap.palette_red(frac_color[2])), hmap.palette_blue(abs(frac_color[1]))))
   
-  pheatmap::pheatmap(t(test),
-           color = hmap_cols)
+  frac_color <- ceiling(range(as.numeric(unlist(test)), na.rm = TRUE) * 10)
+  frac_pos <- frac_color[which(frac_color > 0)]
+  frac_neg <- frac_color[which(frac_color < 0)]
+  
+  if(length(frac_neg) == 0){
+    hmap_cols <- rev(c(rev(hmap.palette_red(frac_pos))))
+  }else{
+    if(length(frac_pos) == 0){
+      hmap_cols <- rev(c(hmap.palette_blue(abs(frac_neg))))
+    }else{
+      hmap_cols <- rev(c(rev(hmap.palette_red(frac_pos)), 
+                         hmap.palette_blue(abs(frac_neg))))
+    }
+  }
+  
+  pheatmap::pheatmap(t(test), color = hmap_cols)
 }
