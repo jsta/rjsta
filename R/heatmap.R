@@ -1,4 +1,4 @@
-#' heatmap
+#' jheatmap
 #' 
 #' @param dt data.frame
 #' @importFrom corrr correlate
@@ -10,9 +10,9 @@
 #' @examples \dontrun{
 #' data(iris)
 #' dt <- iris
-#' heatmap(dt)
+#' jheatmap(dt)
 #' }
-heatmap <- function(dt){
+jheatmap <- function(dt){
   # dt <- iris
   test <- dt %>%
     dplyr::select_if(is.numeric) %>%
@@ -26,7 +26,8 @@ heatmap <- function(dt){
     RColorBrewer::brewer.pal(n = 7, name = "Reds"))
   hmap.palette_blue <-  colorRampPalette(
     RColorBrewer::brewer.pal(n = 7, name = "Blues"))
-  hmap_cols <- rev(c(rev(hmap.palette_red(10)), hmap.palette_blue(10)))
+  frac_color <- ceiling(range(as.numeric(unlist(test)), na.rm = TRUE) * 10)
+  hmap_cols <- rev(c(rev(hmap.palette_red(frac_color[2])), hmap.palette_blue(abs(frac_color[1]))))
   
   pheatmap::pheatmap(t(test),
            color = hmap_cols)
