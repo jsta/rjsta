@@ -4,8 +4,7 @@
 \alias{download_zenodo}
 \title{Download files from Zenodo record id}
 \usage{
-download_zenodo(record_id, dest_folder = "",
-  token = Sys.getenv("ZENODO_PAT"))
+download_zenodo(record_id, dest_folder = "", token = Sys.getenv("ZENODO_PAT"))
 }
 \arguments{
 \item{record_id}{record id}

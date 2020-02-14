@@ -4,8 +4,7 @@
 \alias{get_if_not_exists}
 \title{Download a file if it doesn't already exist}
 \usage{
-get_if_not_exists(x, destfile, read_function = readRDS, ow = FALSE,
-  ...)
+get_if_not_exists(x, destfile, read_function = readRDS, ow = FALSE, ...)
 }
 \arguments{
 \item{x}{url string or function to be evaluated}
@@ -24,7 +23,7 @@ Download a file if it doesn't already exist
 \examples{
 \dontrun{
 # unlink("data.gz")
-get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz")
+get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz", ow = TRUE)
 
 junk_rds <- function(destfile, add_number){
      saveRDS(1 + add_number, destfile)
