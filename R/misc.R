@@ -45,7 +45,7 @@ gitignore <- function(f, dry.run = FALSE, verbose = FALSE){
 #' @export
 #' @examples \dontrun{
 #' # unlink("data.gz")
-#' get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz")
+#' get_if_not_exists("http://www.omegahat.net/RCurl/data.gz", "data.gz", ow = TRUE)
 #' 
 #' junk_rds <- function(destfile, add_number){
 #'      saveRDS(1 + add_number, destfile)
