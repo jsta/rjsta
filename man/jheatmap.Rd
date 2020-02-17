@@ -4,10 +4,12 @@
 \alias{jheatmap}
 \title{jheatmap}
 \usage{
-jheatmap(dt)
+jheatmap(dt, focal_columns = NULL)
 }
 \arguments{
 \item{dt}{data.frame}
+
+\item{focal_columns}{character vector specifying column names to focus on}
 }
 \description{
 jheatmap
@@ -17,5 +19,6 @@ jheatmap
 data(iris)
 dt <- iris
 jheatmap(dt)
+jheatmap(dt, c("Sepal.Length"))
 }
 }
