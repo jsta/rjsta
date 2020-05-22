@@ -12,3 +12,6 @@ tabular(df, ...)
 \description{
 Format a table for inclusion in roxygen docs
 }
+\references{
+<http://r-pkgs.had.co.nz/man.html>
+}

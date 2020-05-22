@@ -87,7 +87,13 @@ get_if_not_exists <- function(x, destfile, read_function = readRDS,
 #' Format a table for inclusion in roxygen docs
 #' 
 #' @param df data.frame
+#' 
+#' @references <http://r-pkgs.had.co.nz/man.html>
+#' 
 #' @export
+#' @examples 
+#' df <- data.frame(a_b = 1, b_c = 2, stringsAsFactors = FALSE)
+#' tabular(df)
 tabular <- function(df, ...) {
   stopifnot(is.data.frame(df))
   
@@ -97,7 +103,13 @@ tabular <- function(df, ...) {
   cols <- lapply(df, format, ...)
   contents <- do.call("paste",
                       c(cols, list(sep = " \\tab ", collapse = "\\cr\n  ")))
+  col_names <- paste0("\\bold{",
+      do.call("paste",
+                       c(names(df), list(sep = "} \\tab \\bold{", collapse = "\\cr\n  "))), 
+      "} \\cr")
   
-  paste("\\tabular{", paste(col_align, collapse = ""), "}{\n  ",
+  paste("\\tabular{", paste(col_align, collapse = ""), "}{\n",
+        col_names,
+        "\n",
         contents, "\n}\n", sep = "")
 }
