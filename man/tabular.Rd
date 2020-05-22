@@ -8,9 +8,15 @@ tabular(df, ...)
 }
 \arguments{
 \item{df}{data.frame}
+
+\item{\dots}{additional options passed to \code{format}}
 }
 \description{
 Format a table for inclusion in roxygen docs
+}
+\examples{
+df <- data.frame(a_b = 1, b_c = 2, stringsAsFactors = FALSE)
+tabular(df)
 }
 \references{
 <http://r-pkgs.had.co.nz/man.html>

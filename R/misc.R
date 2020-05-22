@@ -87,6 +87,7 @@ get_if_not_exists <- function(x, destfile, read_function = readRDS,
 #' Format a table for inclusion in roxygen docs
 #' 
 #' @param df data.frame
+#' @param \dots additional options passed to \code{format}
 #' 
 #' @references <http://r-pkgs.had.co.nz/man.html>
 #' 
