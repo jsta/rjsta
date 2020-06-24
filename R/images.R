@@ -12,5 +12,7 @@
 #' }
 svg_to_pdf <- function(url, outname = gsub(".svg", ".pdf", basename(url))){
   # url <- "https://zenodo.org/badge/doi/10.5281/zenodo.2554212.svg"
-  rsvg::rsvg_pdf(url, file = outname)
+  if(!file.exists(outname)){
+    rsvg::rsvg_pdf(url, file = outname)
+  }
 }
