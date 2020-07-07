@@ -21,7 +21,8 @@ Imports: rvest,
          corrr,
          pheatmap,
          RColorBrewer,
-         rsvg
+         rsvg, 
+         ggplot2
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.0
