@@ -47,7 +47,7 @@ gg_quantdot <- function(dt, grp, var){
   
   dt %>%
     group_by({{grp}}) %>%
-    summarise_at({{var}}, funs(!!!p_funs)) %>% 
+    summarise_at({{var}}, p_funs) %>% 
     ggplot() + 
     geom_pointrange(aes(x = {{grp}}, y = .data$`50%`,
                       ymin = .data$`5%`, ymax = .data$`95%`)) +
