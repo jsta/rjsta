@@ -1,9 +1,9 @@
-# Joseph Stachelek's Personal Library of Functions
+# Joseph Stachelek's Personal Library of R Functions
 
-A library of functions to manipulate date fields, calculate
+A library of R functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
     calculate polar coordinates, etc.
 
 ## Installation
 
-`devtools::install_github("jsta/jsta")`
+`devtools::install_github("jsta/rjsta")`
