@@ -17,6 +17,7 @@ pdf_table <- function(x, out_name = "test.pdf"){
     # Only fits 25 rows of data. Warn if greater?
     gridExtra::grid.table(x, rows = rep("", nrow(x)))
     dev.off()
+    system(paste0("pdfcrop ", out_name, " ", out_name))
   }
   if(is.character(x)){
     zz <- file("test.md", "w")
@@ -26,6 +27,7 @@ pdf_table <- function(x, out_name = "test.pdf"){
     sink()
     close(zz)
     system(paste0("pandoc -s test.md -o ", out_name))
+    system(paste0("pdfcrop ", out_name, " ", out_name))
     unlink("test.md")
   }
 }
