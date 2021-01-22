@@ -25,6 +25,6 @@ Imports: rvest,
          ggplot2
 License: GPL (>= 2)
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: testthat
 Encoding: UTF-8
