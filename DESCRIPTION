@@ -3,7 +3,7 @@ Title: Joseph Stachelek's Personal Library of Functions
 Description: A library of functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
     calculate polar coordinates, ...
-Version: 0.1-3
+Version: 0.1-4
 Author: Joseph Stachelek <stachel2@msu.edu>
 Maintainer: Joseph Stachelek <stachel2@msu.edu>
 Imports: rvest,
