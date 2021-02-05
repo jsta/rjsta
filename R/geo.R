@@ -101,3 +101,60 @@ get_intersects <- function(target, src, threshold = 0){
   target[unlist(lapply(st_intersects(target, src), 
             function(x) length(x) > threshold)),]
 }
+
+#' Detect if a USGS gage is upstream of a lake
+#' 
+#' @param site_no character to preserve leading zeros
+#' @param distance_threshold numeric in units of km
+#' 
+#' @importFrom nhdplusTools get_nldi_feature navigate_nldi
+#' @importFrom nhdR nhd_plus_query
+#' @importFrom sf st_coordinates st_transform st_crs st_intersection st_distance st_area st_cast
+#' @export
+#' 
+#' @examples \dontrun{
+#' site_no <- "040871473"
+#' is_lake_gage(site_no)
+#' site_no <- "05078470"
+#' site_no <- "05427718"
+#' 
+#' }
+is_a_lake_gage  <- function(site_no, distance_threshold = 20){
+  nldi_feature    <- list(featureSource = "nwissite",
+                          featureID = paste0("USGS-", site_no))
+  site            <- nhdplusTools::get_nldi_feature(nldi_feature)
+  stream_down     <- tryCatch(
+    nhdplusTools::navigate_nldi(nldi_feature, 
+                                mode = "DM", distance_km = distance_threshold), 
+    error = function(e) NA)
+  
+  if(length(stream_down) == 2 & !is.null(stream_down$DM_flowlines)){
+    # get lake polygon in buffer
+    poly_buffer <- suppressWarnings(nhd_plus_query(
+      lon = st_coordinates(site)[1], lat = st_coordinates(site)[2],
+      dsn = c("NHDWaterbody", "NHDFlowLine"), buffer_dist = 0.1,
+      quiet = TRUE))
+    
+    # get downstream lakes
+    stream_down         <- st_transform(stream_down$DM_flowlines,
+                                        st_crs(poly_buffer$sp$NHDWaterbody))
+    waterbodies_down    <- poly_buffer$sp$NHDWaterbody[
+      unlist(lapply(
+        st_intersects(poly_buffer$sp$NHDWaterbody, stream_down),
+        function(x) length(x) > 0)),]
+    waterbodies_largest <- waterbodies_down[which.max(st_area(waterbodies_down)),]
+    
+    pour_point <- suppressWarnings(st_intersection(stream_down,
+                                                   st_cast(waterbodies_largest,
+                                                           "MULTILINESTRING", group_or_split = FALSE)))
+    pour_point <- pour_point[
+      which.min(st_distance(
+        st_transform(site, st_crs(pour_point)), pour_point)),]
+  }else{
+    pour_point <- NA
+    waterbodies_down <- NA
+  }
+  
+  list(pour_point = pour_point, waterbodies_down = waterbodies_down,
+       site = site, is_lake_gage = nrow(pour_point) > 0 & nrow(waterbodies_down) > 0)
+}

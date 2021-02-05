@@ -6,3 +6,7 @@ junk.rds
 test.md
 test.pdf
 Rplot.png
+zz2.pdf
+^\.ccache$
+^\.github$
+^tic\.R$

@@ -22,7 +22,9 @@ Imports: rvest,
          pheatmap,
          RColorBrewer,
          rsvg, 
-         ggplot2
+         ggplot2,
+         nhdR,
+         nhdplusTools
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.1
