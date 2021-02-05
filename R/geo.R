@@ -114,12 +114,13 @@ get_intersects <- function(target, src, threshold = 0){
 #' 
 #' @examples \dontrun{
 #' site_no <- "040871473"
-#' is_lake_gage(site_no)
-#' site_no <- "05078470"
+#' is_lake_gage(site_no)$is_lake_gage # FALSE 
 #' site_no <- "05427718"
+#' is_lake_gage(site_no)$is_lake_gage # TRUE
 #' 
 #' }
-is_a_lake_gage  <- function(site_no, distance_threshold = 20){
+is_lake_gage  <- function(site_no, distance_threshold = 20){
+  # distance_threshold <- 20
   nldi_feature    <- list(featureSource = "nwissite",
                           featureID = paste0("USGS-", site_no))
   site            <- nhdplusTools::get_nldi_feature(nldi_feature)
@@ -128,7 +129,8 @@ is_a_lake_gage  <- function(site_no, distance_threshold = 20){
                                 mode = "DM", distance_km = distance_threshold), 
     error = function(e) NA)
   
-  if(length(stream_down) == 2 & !is.null(stream_down$DM_flowlines)){
+  if(length(stream_down) == 2 & 
+     tryCatch(!is.null(stream_down$DM_flowlines), error = function(e) FALSE)){
     # get lake polygon in buffer
     poly_buffer <- suppressWarnings(nhd_plus_query(
       lon = st_coordinates(site)[1], lat = st_coordinates(site)[2],
@@ -155,6 +157,8 @@ is_a_lake_gage  <- function(site_no, distance_threshold = 20){
     waterbodies_down <- NA
   }
   
+  is_lake_gage <- ifelse(!is.null(nrow(pour_point)), nrow(waterbodies_down) > 0, FALSE)
+  
   list(pour_point = pour_point, waterbodies_down = waterbodies_down,
-       site = site, is_lake_gage = nrow(pour_point) > 0 & nrow(waterbodies_down) > 0)
+       site = site, is_lake_gage = is_lake_gage)
 }
