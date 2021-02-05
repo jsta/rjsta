@@ -7,7 +7,7 @@
 dd2dms(x)
 }
 \arguments{
-\item{x}{numeric vector of length 1 corresonding to decimal degrees}
+\item{x}{numeric vector of length 1 corresponding to decimal degrees}
 }
 \description{
 Convert decimal degree coordinates to degrees, minutes, and seconds.

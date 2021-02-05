@@ -1,7 +1,7 @@
 
 #' dms2dd
 #' @description Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees
-#' @param x numeric vector of length 3 corresonding to degrees, minutes, and seconds
+#' @param x numeric vector of length 3 corresponding to degrees, minutes, and seconds
 #' @export
 #' @examples
 #' dt <- rbind(c(25,12,53.66),c(-80,32,00.61))
@@ -16,7 +16,7 @@ dms2dd <- function(x){
 
 #' dd2dms
 #' @description Convert decimal degree coordinates to degrees, minutes, and seconds.
-#' @param x numeric vector of length 1 corresonding to decimal degrees
+#' @param x numeric vector of length 1 corresponding to decimal degrees
 #' @export
 #' @examples
 #' dd <- 25.31015
