@@ -2,7 +2,7 @@
 % Please edit documentation in R/heatmap.R
 \name{jheatmap}
 \alias{jheatmap}
-\title{jheatmap}
+\title{Visualize a corrr matrix with pheatmap}
 \usage{
 jheatmap(dt, focal_columns = NULL)
 }
@@ -12,7 +12,7 @@ jheatmap(dt, focal_columns = NULL)
 \item{focal_columns}{character vector specifying column names to focus on}
 }
 \description{
-jheatmap
+Visualize a corrr matrix with pheatmap
 }
 \examples{
 \dontrun{

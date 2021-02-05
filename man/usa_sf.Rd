@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo.R
 \name{usa_sf}
 \alias{usa_sf}
-\title{usa_sf}
+\title{United States basemap}
 \usage{
 usa_sf(crs)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/text.R
 \name{break_word}
 \alias{break_word}
-\title{break_word}
+\title{Break a character string into two lines based on a specified maximum length}
 \usage{
 break_word(x, max.len)
 }

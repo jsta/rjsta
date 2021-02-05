@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plot_invisible}
 \alias{plot_invisible}
-\title{plot_invisible}
+\title{Invisibly push a base plot to a png file}
 \usage{
 plot_invisible(text, outpath)
 }

@@ -1,5 +1,5 @@
 
-#' svg_to_pdf 
+#' Convert an svg file to pdf
 #' 
 #' @param url url
 #' @param outname outname

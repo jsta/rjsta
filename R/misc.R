@@ -8,7 +8,7 @@ Mode <- function(x){
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-#' gitignore
+#' Add a file to a project's .gitignore list
 #' 
 #' @param f file.path or wildcard to add to gitignore
 #' @param dry.run logical 

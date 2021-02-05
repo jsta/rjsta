@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo.R
 \name{key_state}
 \alias{key_state}
-\title{key_state}
+\title{Join US state abbreviations to a data frame}
 \usage{
 key_state(x)
 }
@@ -10,7 +10,7 @@ key_state(x)
 \item{x}{object with an unabbreviated state column}
 }
 \description{
-key_state
+Join US state abbreviations to a data frame
 }
 \examples{
 key_state(data.frame(state.name = datasets::state.name, stringsAsFactors = FALSE))

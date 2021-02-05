@@ -28,5 +28,6 @@ Imports: rvest,
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.1
-Suggests: testthat
+Suggests: testthat,
+          wql
 Encoding: UTF-8

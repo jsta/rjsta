@@ -2,7 +2,7 @@
 % Please edit documentation in R/images.R
 \name{svg_to_pdf}
 \alias{svg_to_pdf}
-\title{svg_to_pdf}
+\title{Convert an svg file to pdf}
 \usage{
 svg_to_pdf(url, outname = gsub(".svg", ".pdf", basename(url)))
 }
@@ -12,7 +12,7 @@ svg_to_pdf(url, outname = gsub(".svg", ".pdf", basename(url)))
 \item{outname}{outname}
 }
 \description{
-svg_to_pdf
+Convert an svg file to pdf
 }
 \examples{
 \dontrun{

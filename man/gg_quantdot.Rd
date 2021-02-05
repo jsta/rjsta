@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{gg_quantdot}
 \alias{gg_quantdot}
-\title{gg_quantdot}
+\title{Create a quantile dotplot in ggplot2}
 \usage{
 gg_quantdot(dt, grp, var)
 }

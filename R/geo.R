@@ -14,8 +14,8 @@ dms2dd <- function(x){
   }
 }
 
-#' dd2dms
-#' @description Convert decimal degree coordinates to degrees, minutes, and seconds.
+#' Convert decimal degree coordinates to degrees, minutes, and seconds.
+#' 
 #' @param x numeric vector of length 1 corresponding to decimal degrees
 #' @export
 #' @examples
@@ -33,7 +33,8 @@ dd2dms <- function(x){
   c(degrees, minutes, seconds)
 }
 
-#' point_in_poly
+#' Return points in spatial (sp package) polygons
+#'
 #' @description spatial join modified from spatialEco::point.in.poly
 #' @param dt SpatialPointsDataFrame
 #' @param poly_shape SpatialPolygonsDataFrame
@@ -45,8 +46,8 @@ point_in_poly <- function(dt, poly_shape){
   dt_pp
 }
 
-#' usa_sf
-#' @description United States basemap
+#' United States basemap
+#' 
 #' @param crs projection string
 #' @importFrom sf st_as_sf
 #' @importFrom maps map
@@ -66,7 +67,8 @@ usa_sf <- function(crs){
   dplyr::filter(res, !is.na(.data$state))
 }
 
-#' key_state
+#' Join US state abbreviations to a data frame
+#' 
 #' @param x object with an unabbreviated state column
 #' @export
 #' @examples 

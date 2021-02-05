@@ -1,4 +1,4 @@
-#' jheatmap
+#' Visualize a corrr matrix with pheatmap
 #' 
 #' @param dt data.frame
 #' @param focal_columns character vector specifying column names to focus on

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo.R
 \name{point_in_poly}
 \alias{point_in_poly}
-\title{point_in_poly}
+\title{Return points in spatial (sp package) polygons}
 \usage{
 point_in_poly(dt, poly_shape)
 }

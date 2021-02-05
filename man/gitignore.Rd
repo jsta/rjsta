@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{gitignore}
 \alias{gitignore}
-\title{gitignore}
+\title{Add a file to a project's .gitignore list}
 \usage{
 gitignore(f, dry.run = FALSE, verbose = FALSE)
 }
@@ -14,7 +14,7 @@ gitignore(f, dry.run = FALSE, verbose = FALSE)
 \item{verbose}{logical, print operation results?}
 }
 \description{
-gitignore
+Add a file to a project's .gitignore list
 }
 \examples{
 \dontrun{

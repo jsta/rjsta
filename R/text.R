@@ -1,6 +1,4 @@
 
-#' break_word
-#' 
 #' Break a character string into two lines based on a specified maximum length
 #' 
 #' @param x character string
@@ -24,7 +22,8 @@ break_word <- function(x, max.len){
   paste(res, "\n", paste(x_split[second_line], collapse = " "))
 }
 
-#' zero_pad
+#' Zero pad character vectors
+#' 
 #' @param x character input to pad
 #' @param digits numeric. number of zeros to pre-append
 #' @examples \dontrun{

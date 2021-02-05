@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo.R
 \name{dd2dms}
 \alias{dd2dms}
-\title{dd2dms}
+\title{Convert decimal degree coordinates to degrees, minutes, and seconds.}
 \usage{
 dd2dms(x)
 }

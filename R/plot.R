@@ -1,5 +1,6 @@
 
-#' plot_invisible
+#' Invisibly push a base plot to a png file
+#' 
 #' @description Wrapper to silently create a plot
 #' @details Stores plots as image files in the temporary workspace (See <http://stackoverflow.com/questions/20363266/how-can-i-suppress-the-creation-of-a-plot-while-calling-a-function-in-r>)
 #' @param text character plotting code to be evaluated
@@ -19,9 +20,7 @@ plot_invisible <- function(text, outpath){
   res
 }
 
-#' gg_quantdot
-#' 
-#' @description Create a quantile dotplot in ggplot2
+#' Create a quantile dotplot in ggplot2
 #' 
 #' @param dt data.frame
 #' @param grp grouping variable

@@ -2,7 +2,7 @@
 % Please edit documentation in R/table.R
 \name{pdf_table}
 \alias{pdf_table}
-\title{pdf_table}
+\title{Create a pdf snapshot of a data.frame or kable output}
 \usage{
 pdf_table(x, out_name = "test.pdf")
 }

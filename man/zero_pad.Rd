@@ -2,7 +2,7 @@
 % Please edit documentation in R/text.R
 \name{zero_pad}
 \alias{zero_pad}
-\title{zero_pad}
+\title{Zero pad character vectors}
 \usage{
 zero_pad(x, digits)
 }
@@ -12,7 +12,7 @@ zero_pad(x, digits)
 \item{digits}{numeric. number of zeros to pre-append}
 }
 \description{
-zero_pad
+Zero pad character vectors
 }
 \examples{
 \dontrun{

@@ -1,6 +1,5 @@
-#' pdf_table
+#' Create a pdf snapshot of a data.frame or kable output
 #' 
-#' @description Create a pdf snapshot of a data.frame or kable output
 #' @param x data.frame or kable output
 #' @param out_name character file name
 #' @importFrom gridExtra grid.table
