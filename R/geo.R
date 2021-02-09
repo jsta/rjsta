@@ -1,6 +1,6 @@
 
-#' dms2dd
-#' @description Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees
+#' Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees
+#' 
 #' @param x numeric vector of length 3 corresponding to degrees, minutes, and seconds
 #' @export
 #' @examples
@@ -126,34 +126,50 @@ is_lake_gage  <- function(site_no, distance_threshold = 20){
   nldi_feature    <- list(featureSource = "nwissite",
                           featureID = paste0("USGS-", site_no))
   site            <- nhdplusTools::get_nldi_feature(nldi_feature)
-  stream_down     <- tryCatch(
+  stream_down     <- suppressMessages(tryCatch(
     nhdplusTools::navigate_nldi(nldi_feature, 
                                 mode = "DM", distance_km = distance_threshold), 
-    error = function(e) NA)
+    error = function(e) NA))
   
   if(length(stream_down) == 2 & 
-     tryCatch(!is.null(stream_down$DM_flowlines), error = function(e) FALSE)){
-    # get lake polygon in buffer
-    poly_buffer <- suppressWarnings(nhd_plus_query(
+     suppressWarnings(tryCatch(!is.null(stream_down$DM_flowlines), error = function(e) FALSE))){
+    # get lake polygons in buffer
+    poly_buffer <- suppressMessages(suppressWarnings(nhd_plus_query(
       lon = st_coordinates(site)[1], lat = st_coordinates(site)[2],
       dsn = c("NHDWaterbody", "NHDFlowLine"), buffer_dist = 0.1,
-      quiet = TRUE))
+      quiet = TRUE)))
     
-    # get downstream lakes
-    stream_down         <- st_transform(stream_down$DM_flowlines,
-                                        st_crs(poly_buffer$sp$NHDWaterbody))
-    waterbodies_down    <- poly_buffer$sp$NHDWaterbody[
-      unlist(lapply(
-        st_intersects(poly_buffer$sp$NHDWaterbody, stream_down),
-        function(x) length(x) > 0)),]
-    waterbodies_largest <- waterbodies_down[which.max(st_area(waterbodies_down)),]
-    
-    pour_point <- suppressWarnings(st_intersection(stream_down,
-                                                   st_cast(waterbodies_largest,
-                                                           "MULTILINESTRING", group_or_split = FALSE)))
-    pour_point <- pour_point[
-      which.min(st_distance(
-        st_transform(site, st_crs(pour_point)), pour_point)),]
+    # only proceed if there are *any* lakes within the distance_threshold
+    real_lakes <- dplyr::filter(poly_buffer$sp$NHDWaterbody, 
+                                GNIS_NAME != "Lake Michigan" | is.na(GNIS_NAME))
+    real_lakes <- real_lakes[st_area(real_lakes) > units::as_units(4, "ha"),]
+    if(any(
+      units::set_units(st_distance(
+      st_transform(site, nhdR:::albers_conic()), 
+      st_transform(real_lakes, nhdR:::albers_conic())
+      ), "km") < 
+      units::as_units(distance_threshold, "km"))
+      ){
+      # get downstream lakes
+      stream_down         <- st_transform(stream_down$DM_flowlines,
+                                          st_crs(poly_buffer$sp$NHDWaterbody))
+      waterbodies_down    <- suppressMessages(poly_buffer$sp$NHDWaterbody[
+        unlist(lapply(
+          st_intersects(poly_buffer$sp$NHDWaterbody, stream_down),
+          function(x) length(x) > 0)),])
+      waterbodies_largest <- waterbodies_down[which.max(st_area(waterbodies_down)),]
+      
+      pour_point <- suppressWarnings(suppressMessages(
+        st_intersection(stream_down, st_cast(waterbodies_largest,
+                                             "MULTILINESTRING", group_or_split = FALSE))
+        ))
+      pour_point <- pour_point[
+        which.min(st_distance(
+          st_transform(site, st_crs(pour_point)), pour_point)),]
+    }else{
+      pour_point <- NA
+      waterbodies_down <- NA  
+    }
   }else{
     pour_point <- NA
     waterbodies_down <- NA
