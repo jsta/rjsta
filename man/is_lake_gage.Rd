@@ -20,6 +20,7 @@ site_no <- "040871473"
 is_lake_gage(site_no)$is_lake_gage # FALSE 
 site_no <- "05427718"
 is_lake_gage(site_no)$is_lake_gage # TRUE
-
+site_no <- "03208950"
+is_lake_gage(site_no)
 }
 }
