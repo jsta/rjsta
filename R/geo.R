@@ -113,6 +113,7 @@ get_intersects <- function(target, src, threshold = 0){
 #' @importFrom nhdR nhd_plus_query
 #' @importFrom sf st_coordinates st_transform st_crs st_intersection st_distance st_area st_cast
 #' @importFrom units set_units as_units
+#' @importFrom rlang .data
 #' @export
 #' 
 #' @examples \dontrun{
@@ -120,7 +121,8 @@ get_intersects <- function(target, src, threshold = 0){
 #' is_lake_gage(site_no)$is_lake_gage # FALSE 
 #' site_no <- "05427718"
 #' is_lake_gage(site_no)$is_lake_gage # TRUE
-#' 
+#' site_no <- "03208950"
+#' is_lake_gage(site_no)
 #' }
 is_lake_gage  <- function(site_no, distance_threshold = 20){
   # distance_threshold <- 20
@@ -142,7 +144,10 @@ is_lake_gage  <- function(site_no, distance_threshold = 20){
     
     # only proceed if there are *any* lakes within the distance_threshold
     real_lakes <- dplyr::filter(poly_buffer$sp$NHDWaterbody, 
-                                GNIS_NAME != "Lake Michigan" | is.na(GNIS_NAME))
+        !(.data$GNIS_NAME %in% c("Lake Michigan", "Lake Superior")) | is.na(.data$GNIS_NAME))
+    real_lakes <- dplyr::filter(real_lakes, 
+                                !(.data$FTYPE %in% c("SwampMarsh")), 
+                                !(.data$FCODE %in% c(39001))) # intermittent lakes
     real_lakes <- real_lakes[st_area(real_lakes) > units::as_units(4, "ha"),]
     if(any(
       units::set_units(st_distance(
@@ -154,9 +159,9 @@ is_lake_gage  <- function(site_no, distance_threshold = 20){
       # get downstream lakes
       stream_down         <- st_transform(stream_down$DM_flowlines,
                                           st_crs(poly_buffer$sp$NHDWaterbody))
-      waterbodies_down    <- suppressMessages(poly_buffer$sp$NHDWaterbody[
+      waterbodies_down    <- suppressMessages(real_lakes[
         unlist(lapply(
-          st_intersects(poly_buffer$sp$NHDWaterbody, stream_down),
+          st_intersects(real_lakes, stream_down),
           function(x) length(x) > 0)),])
       waterbodies_largest <- waterbodies_down[which.max(st_area(waterbodies_down)),]
       
