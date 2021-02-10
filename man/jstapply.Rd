@@ -23,7 +23,7 @@ jstapply(X, FUN, flag, ...)
 A progress bar version of lapply without boilerplate overhead
 }
 \examples{
-\dontrun{#' 
+\dontrun{ 
 lapply(1:3, function(x) Sys.sleep(x))
 # compared with:
 jstapply(1:3, function(x) Sys.sleep(x))

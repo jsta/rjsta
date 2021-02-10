@@ -122,7 +122,7 @@ tabular <- function(df, ...) {
 #' @importFrom progress progress_bar
 #' @export
 #' 
-#' @examples \dontrun{#' 
+#' @examples \dontrun{ 
 #' lapply(1:3, function(x) Sys.sleep(x))
 #' # compared with:
 #' jstapply(1:3, function(x) Sys.sleep(x))
