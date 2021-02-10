@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{jstapply}
 \alias{jstapply}
-\title{An progress bar version of lapply}
+\title{A progress bar version of lapply without boilerplate overhead}
 \usage{
 jstapply(X, FUN, flag, ...)
 }
@@ -20,7 +20,7 @@ jstapply(X, FUN, flag, ...)
 \item{...}{optional arguments to \code{FUN}.}
 }
 \description{
-An progress bar version of lapply
+A progress bar version of lapply without boilerplate overhead
 }
 \examples{
 \dontrun{#' 

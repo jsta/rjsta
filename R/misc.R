@@ -115,7 +115,7 @@ tabular <- function(df, ...) {
         contents, "\n}\n", sep = "")
 }
 
-#' An progress bar version of lapply
+#' A progress bar version of lapply without boilerplate overhead
 #'
 #' @inheritParams base::lapply
 #' @param flag placeholder not currently implemented to specify pre-bar flag
