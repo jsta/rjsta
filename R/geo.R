@@ -112,6 +112,7 @@ get_intersects <- function(target, src, threshold = 0){
 #' @importFrom nhdplusTools get_nldi_feature navigate_nldi
 #' @importFrom nhdR nhd_plus_query
 #' @importFrom sf st_coordinates st_transform st_crs st_intersection st_distance st_area st_cast
+#' @importFrom units set_units as_units
 #' @export
 #' 
 #' @examples \dontrun{

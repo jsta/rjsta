@@ -24,7 +24,8 @@ Imports: rvest,
          rsvg, 
          ggplot2,
          nhdR,
-         nhdplusTools
+         nhdplusTools,
+         units
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.1
