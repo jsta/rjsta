@@ -25,7 +25,8 @@ Imports: rvest,
          ggplot2,
          nhdR,
          nhdplusTools,
-         units
+         units,
+         progress
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.1

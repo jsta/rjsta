@@ -114,3 +114,33 @@ tabular <- function(df, ...) {
         "\n",
         contents, "\n}\n", sep = "")
 }
+
+#' An progress bar version of lapply
+#'
+#' @inheritParams base::lapply
+#' @param flag placeholder not currently implemented to specify pre-bar flag
+#' @importFrom progress progress_bar
+#' @export
+#' 
+#' @examples \dontrun{#' 
+#' lapply(1:3, function(x) Sys.sleep(x))
+#' # compared with:
+#' jstapply(1:3, function(x) Sys.sleep(x))
+#' }
+jstapply <- function(X, FUN, flag, ...){
+  pb <- progress::progress_bar$new(total = length(X),
+                         format = ":flag [:bar] :percent",
+                         clear = FALSE,
+                         width = 80, show_after = 0)
+  
+  fun_mod <- FUN
+  body(fun_mod) <- parse(text=paste0(
+    c("{", 
+      'pb <- get("pb", envir = parent.frame())', 
+      "pb$tick(tokens = list(flag = x))",
+      body(fun_mod)[1:length(body(fun_mod))], 
+      "}"),
+    collapse = "\n"))
+  
+  lapply(X, function(y) fun_mod(y))
+}
