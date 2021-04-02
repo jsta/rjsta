@@ -1,4 +1,4 @@
-# Joseph Stachelek's Personal Library of R Functions
+# J Stachelek's Personal Library of R Functions
 
 A library of R functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
