@@ -123,6 +123,8 @@ get_intersects <- function(target, src, threshold = 0){
 #' is_lake_gage(site_no)$is_lake_gage # TRUE
 #' site_no <- "03208950"
 #' is_lake_gage(site_no)
+#' site_no <- "07130500"
+#' is_lake_gage(site_no)
 #' }
 is_lake_gage  <- function(site_no, distance_threshold = 20){
   # distance_threshold <- 20
@@ -144,7 +146,10 @@ is_lake_gage  <- function(site_no, distance_threshold = 20){
     
     # only proceed if there are *any* lakes within the distance_threshold
     real_lakes <- dplyr::filter(poly_buffer$sp$NHDWaterbody, 
-        !(.data$GNIS_NAME %in% c("Lake Michigan", "Lake Superior")) | is.na(.data$GNIS_NAME))
+        !(.data$GNIS_NAME %in% 
+            c("Lake Michigan", "Lake Superior", "Lake Erie", 
+              "Lake Ontario")) | 
+          is.na(.data$GNIS_NAME))
     real_lakes <- dplyr::filter(real_lakes, 
                                 !(.data$FTYPE %in% c("SwampMarsh")), 
                                 !(.data$FCODE %in% c(39001))) # intermittent lakes
