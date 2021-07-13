@@ -10,3 +10,4 @@ zz2.pdf
 ^\.ccache$
 ^\.github$
 ^tic\.R$
+.vscode
