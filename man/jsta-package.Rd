@@ -10,4 +10,12 @@ A library of functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
     calculate polar coordinates, ...
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jsta/rjsta}
+  \item Report bugs at \url{https://github.com/jsta/rjsta/issues}
+}
+
+}
 \keyword{internal}

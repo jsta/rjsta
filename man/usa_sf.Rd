@@ -13,5 +13,5 @@ usa_sf(crs)
 United States basemap
 }
 \examples{
-usa_sf() 
+usa_sf()
 }

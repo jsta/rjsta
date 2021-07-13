@@ -17,10 +17,12 @@ Detect if a USGS gage is upstream of a lake
 \examples{
 \dontrun{
 site_no <- "040871473"
-is_lake_gage(site_no)$is_lake_gage # FALSE 
+is_lake_gage(site_no)$is_lake_gage # FALSE
 site_no <- "05427718"
 is_lake_gage(site_no)$is_lake_gage # TRUE
 site_no <- "03208950"
+is_lake_gage(site_no)
+site_no <- "07130500"
 is_lake_gage(site_no)
 }
 }
