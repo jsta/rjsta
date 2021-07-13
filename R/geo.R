@@ -191,3 +191,24 @@ is_lake_gage  <- function(site_no, distance_threshold = 20) {
   list(pour_point = pour_point, waterbodies_down = waterbodies_down,
     site = site, is_lake_gage = is_lake_gage)
 }
+
+#' Rebuild an sf object geometry to fix cross edges
+#'
+#' @param sf_object An sf object to fix
+#'
+#' @importFrom s2 s2_rebuild as_s2_geography s2_options
+#' @export
+#'
+# https://github.com/r-spatial/s2/issues/99#issuecomment-827776431
+make_valid_geom_s2 <- function(sf_object) {
+  sf_s2 <- s2::s2_rebuild(
+    s2::as_s2_geography(sf_object, check = FALSE),
+    options = s2::s2_options(
+      edge_type = "undirected", split_crossing_edges = TRUE, validate = TRUE
+    )
+  )
+  # all(s2::s2_is_valid(vpu_s2))
+
+  sf::st_geometry(sf_object) <- sf::st_as_sfc(sf_s2)
+  sf_object
+}
