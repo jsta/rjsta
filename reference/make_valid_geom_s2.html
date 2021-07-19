@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Detect if a USGS gage is upstream of a lake — is_lake_gage • jsta</title>
+<title>Rebuild an sf object geometry to fix cross edges — make_valid_geom_s2 • jsta</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Detect if a USGS gage is upstream of a lake — is_lake_gage" />
-<meta property="og:description" content="Detect if a USGS gage is upstream of a lake" />
+<meta property="og:title" content="Rebuild an sf object geometry to fix cross edges — make_valid_geom_s2" />
+<meta property="og:description" content="Rebuild an sf object geometry to fix cross edges" />
 
 
 
@@ -108,43 +108,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Detect if a USGS gage is upstream of a lake</h1>
+    <h1>Rebuild an sf object geometry to fix cross edges</h1>
     <small class="dont-index">Source: <a href='https://github.com/jsta/rjsta/blob/master/R/geo.R'><code>R/geo.R</code></a></small>
-    <div class="hidden name"><code>is_lake_gage.Rd</code></div>
+    <div class="hidden name"><code>make_valid_geom_s2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Detect if a USGS gage is upstream of a lake</p>
+    <p>Rebuild an sf object geometry to fix cross edges</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_lake_gage</span><span class='op'>(</span><span class='va'>site_no</span>, distance_threshold <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_valid_geom_s2</span><span class='op'>(</span><span class='va'>sf_object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>site_no</th>
-      <td><p>character to preserve leading zeros</p></td>
-    </tr>
-    <tr>
-      <th>distance_threshold</th>
-      <td><p>numeric in units of km</p></td>
+      <th>sf_object</th>
+      <td><p>An sf object to fix</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>site_no</span> <span class='op'>&lt;-</span> <span class='st'>"040871473"</span>
-<span class='fu'>is_lake_gage</span><span class='op'>(</span><span class='va'>site_no</span><span class='op'>)</span><span class='op'>$</span><span class='va'>is_lake_gage</span> <span class='co'># FALSE</span>
-<span class='va'>site_no</span> <span class='op'>&lt;-</span> <span class='st'>"05427718"</span>
-<span class='fu'>is_lake_gage</span><span class='op'>(</span><span class='va'>site_no</span><span class='op'>)</span><span class='op'>$</span><span class='va'>is_lake_gage</span> <span class='co'># TRUE</span>
-<span class='va'>site_no</span> <span class='op'>&lt;-</span> <span class='st'>"03208950"</span>
-<span class='fu'>is_lake_gage</span><span class='op'>(</span><span class='va'>site_no</span><span class='op'>)</span>
-<span class='va'>site_no</span> <span class='op'>&lt;-</span> <span class='st'>"07130500"</span>
-<span class='fu'>is_lake_gage</span><span class='op'>(</span><span class='va'>site_no</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
