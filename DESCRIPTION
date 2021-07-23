@@ -1,13 +1,13 @@
 Package: jsta
-Title: Joseph Stachelek's Personal Library of Functions
+Title: Jemma Stachelek's Personal Library of Functions
 Description: A library of functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
     calculate polar coordinates, ...
 Version: 0.1-4
 URL: https://github.com/jsta/rjsta
 BugReports: https://github.com/jsta/rjsta/issues
-Author: Joseph Stachelek <stachel2@msu.edu>
-Maintainer: Joseph Stachelek <stachel2@msu.edu>
+Author: Jemma Stachelek <stachel2@msu.edu>
+Maintainer: Jemma Stachelek <stachel2@msu.edu>
 Imports: rvest,
          xml2,
          stringr,

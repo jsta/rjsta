@@ -4,7 +4,7 @@
 \name{jsta-package}
 \alias{jsta}
 \alias{jsta-package}
-\title{jsta: Joseph Stachelek's Personal Library of Functions}
+\title{jsta: Jemma Stachelek's Personal Library of Functions}
 \description{
 A library of functions to manipulate date fields, calculate
     salinity from conductivity, pad string fields,
