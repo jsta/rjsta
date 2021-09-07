@@ -11,3 +11,4 @@ zz2.pdf
 ^\.github$
 ^tic\.R$
 .vscode
+config.py
