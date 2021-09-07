@@ -8,6 +8,13 @@
 #' }
 config <- function(file = "config.py") {
   res <- suppressWarnings(readLines(file))
+
+  # remove non equal sign lines
+  is_assignment <- as.logical(sapply(res, function(x) grep("=", x) >= 1))
+  is_assignment <- sapply(is_assignment,
+    function(x) ifelse(is.na(x), FALSE, TRUE))
+  res <- res[is_assignment]
+
   res <- strsplit(res, " ")
   keys <- unlist(lapply(res, function(x) x[[1]][[1]]))
   values <- unlist(lapply(res, function(x) x[[3]][[1]]))
