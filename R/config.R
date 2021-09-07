@@ -2,15 +2,21 @@
 #' Read a config.py file in R
 #'
 #' @param file a file path
-#' @export 
+#' @export
 #' @examples \dontrun{
-#'  config()
+#' dir(config()$a)
 #' }
-config <- function(file="config.py"){
-    res <- readLines(file)
-    res <- strsplit(res, " ")
-    keys <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[1]]))
-    values <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[2]]))
+config <- function(file = "config.py") {
+  res <- suppressWarnings(readLines(file))
+  res <- strsplit(res, " ")
+  keys <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[1]]))
+  values <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[2]]))
 
-    setNames(data.frame(t(values)), keys)
+  res <- setNames(data.frame(t(values)), keys)
+
+  norm_file_path <- function(x) {
+    gsub('\\"', "", gsub("\\\\\\\\", "\\\\", x))
+  }
+
+  data.frame(t(apply(res, 2, norm_file_path)))
 }
