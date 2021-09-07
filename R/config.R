@@ -9,8 +9,10 @@
 config <- function(file = "config.py") {
   res <- suppressWarnings(readLines(file))
   res <- strsplit(res, " ")
-  keys <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[1]]))
-  values <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[2]]))
+  keys <- unlist(lapply(res, function(x) x[[1]][[1]]))
+  values <- unlist(lapply(res, function(x) x[[3]][[1]]))
+  # keys <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[1]]))
+  # values <- unlist(lapply(res, function(x) strsplit(x, "=")[[1]][[2]]))
 
   res <- setNames(data.frame(t(values)), keys)
 

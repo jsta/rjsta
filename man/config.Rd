@@ -14,6 +14,6 @@ Read a config.py file in R
 }
 \examples{
 \dontrun{
- config()
+dir(config()$a)
 }
 }
