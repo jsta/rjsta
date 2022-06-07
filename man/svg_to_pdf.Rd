@@ -17,6 +17,6 @@ Convert an svg file to pdf
 \examples{
 \dontrun{
 svg_to_pdf(
-"https://img.shields.io/badge/Paper-10.1002/lno.11137-blue.svg")
+  "https://img.shields.io/badge/Paper-10.1002/lno.11137-blue.svg")
 }
 }

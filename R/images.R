@@ -4,7 +4,6 @@
 #' @param url url
 #' @param outname outname
 #'
-#' @importFrom rsvg rsvg_pdf
 #' @export
 #' @examples \dontrun{
 #' svg_to_pdf(
@@ -13,6 +12,10 @@
 svg_to_pdf <- function(url, outname = gsub(".svg", ".pdf", basename(url))) {
   # url <- "https://zenodo.org/badge/doi/10.5281/zenodo.2554212.svg"
   if (!file.exists(outname)) {
-    rsvg::rsvg_pdf(url, file = outname)
+    if (require(rsvg)){
+      rsvg::rsvg_pdf(url, file = outname)
+    } else {
+      stop("Install the 'rsvg' package to run this function.")
+    }
   }
 }
