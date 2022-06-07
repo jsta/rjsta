@@ -22,8 +22,7 @@ Imports: rvest,
          maptools,
          corrr,
          pheatmap,
-         RColorBrewer,
-         rsvg, 
+         RColorBrewer,         
          ggplot2,
          nhdR,
          nhdplusTools,
@@ -34,5 +33,6 @@ License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 7.1.1
 Suggests: testthat,
-          wql
+          wql,
+          rsvg
 Encoding: UTF-8
